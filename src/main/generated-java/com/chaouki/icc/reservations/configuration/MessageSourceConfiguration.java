@@ -40,7 +40,8 @@ public class MessageSourceConfiguration {
                 "classpath:javax/faces/Messages", //
                 // generated domain resources
                 "classpath:/localization/domain/Artists", //
-                "classpath:/localization/domain/Localities", //
+                "classpath:/localization/domain/CastMember", //
+                "classpath:/localization/domain/Locality", //
                 "classpath:/localization/domain/Locations", //
                 "classpath:/localization/domain/RepresentationUser", //
                 "classpath:/localization/domain/Representations", //

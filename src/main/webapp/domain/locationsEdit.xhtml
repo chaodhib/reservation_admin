@@ -23,7 +23,7 @@
 		<app:input id="designation" value="#{locationsEditForm.locations.designation}" size="60" label="locations_designation" required="true" />
 		<app:inputTextArea id="address" value="#{locationsEditForm.locations.address}" label="locations_address" required="true" />
 		<app:autoComplete id="locality" value="#{locationsEditForm.locality.selected}" label="locations_locality" title="locations_locality" required="true" 
-			model="#{locationsEditForm.locality}" controller="#{localitiesController}" permission="#{localitiesPermission}">
+			model="#{locationsEditForm.locality}" controller="#{localityController}" permission="#{localityPermission}">
 			<app:iconSearch id="selectLocality" />
 			<app:iconAdd id="addLocality" />
 			<app:iconEdit item="#{locationsEditForm.locations.locality}" />

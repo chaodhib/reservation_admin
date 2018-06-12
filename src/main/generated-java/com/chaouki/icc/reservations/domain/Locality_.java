@@ -11,11 +11,11 @@ package com.chaouki.icc.reservations.domain;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@StaticMetamodel(Localities.class)
-public abstract class Localities_ {
+@StaticMetamodel(Locality.class)
+public abstract class Locality_ {
 
     // Raw attributes
-    public static volatile SingularAttribute<Localities, Integer> id;
-    public static volatile SingularAttribute<Localities, String> postalCode;
-    public static volatile SingularAttribute<Localities, String> locality;
+    public static volatile SingularAttribute<Locality, Integer> id;
+    public static volatile SingularAttribute<Locality, String> postalCode;
+    public static volatile SingularAttribute<Locality, String> locality2;
 }

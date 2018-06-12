@@ -22,7 +22,7 @@
 			<app:inputMultiAutoComplete id="designation" value="#{locationsSearchForm.designationSelector}" label="locations_designation" completeMethod="completeProperty" property="designation" />
 			<app:inputMultiAutoComplete id="address" value="#{locationsSearchForm.addressSelector}" label="locations_address" completeMethod="completeProperty" property="address" />
 			<app:multiAutoComplete id="localitySelector" value="#{locationsSearchForm.localitySelector}" label="locations_locality" 
-				controller="#{localitiesController}" permission="#{localitiesPermission}"/>
+				controller="#{localityController}" permission="#{localityPermission}"/>
 			<app:inputMultiAutoComplete id="website" value="#{locationsSearchForm.websiteSelector}" label="locations_website" completeMethod="completeProperty" property="website" />
 			<app:inputMultiAutoComplete id="phone" value="#{locationsSearchForm.phoneSelector}" label="locations_phone" completeMethod="completeProperty" property="phone" />
 		</ui:define>

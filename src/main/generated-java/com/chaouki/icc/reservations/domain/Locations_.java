@@ -23,5 +23,5 @@ public abstract class Locations_ {
     public static volatile SingularAttribute<Locations, String> phone;
 
     // Many to one
-    public static volatile SingularAttribute<Locations, Localities> locality;
+    public static volatile SingularAttribute<Locations, Locality> locality;
 }

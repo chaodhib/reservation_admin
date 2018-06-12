@@ -32,68 +32,68 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.chaouki.icc.reservations.domain.Localities;
-import com.chaouki.icc.reservations.domain.Localities_;
+import com.chaouki.icc.reservations.domain.Locality;
+import com.chaouki.icc.reservations.domain.Locality_;
 import com.jaxio.jpa.querybyexample.SearchParameters;
 
 /**
- * Integration test on LocalitiesRepository
+ * Integration test on LocalityRepository
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath*:spring/applicationContext-test.xml" })
 @Transactional
-public class LocalitiesRepositoryIT {
+public class LocalityRepositoryIT {
     @SuppressWarnings("unused")
-    private static final Logger log = LoggerFactory.getLogger(LocalitiesRepositoryIT.class);
+    private static final Logger log = LoggerFactory.getLogger(LocalityRepositoryIT.class);
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Inject
-    private LocalitiesRepository localitiesRepository;
+    private LocalityRepository localityRepository;
 
     @Inject
-    private LocalitiesGenerator localitiesGenerator;
+    private LocalityGenerator localityGenerator;
 
     @Test
     @Rollback
     public void saveAndGet() {
-        Localities localities = localitiesGenerator.getLocalities();
+        Locality locality = localityGenerator.getLocality();
 
         // add it to a Set before saving (force equals/hashcode)
-        Set<Localities> set = newHashSet(localities, localities);
+        Set<Locality> set = newHashSet(locality, locality);
         assertThat(set).hasSize(1);
 
-        localitiesRepository.save(localities);
+        localityRepository.save(locality);
         entityManager.flush();
 
         // reload it from cache and check equality
-        Localities model = new Localities();
-        model.setId(localities.getId());
-        assertThat(localities).isEqualTo(localitiesRepository.get(model));
+        Locality model = new Locality();
+        model.setId(locality.getId());
+        assertThat(locality).isEqualTo(localityRepository.get(model));
 
         // clear cache to force reload from db
         entityManager.clear();
 
         // since you use a business key, equality must be preserved.
-        assertThat(localities).isEqualTo(localitiesRepository.get(model));
+        assertThat(locality).isEqualTo(localityRepository.get(model));
     }
 
     @Test
     @Rollback
     public void saveAndGetWithPropertySelector() {
-        Localities localities = localitiesGenerator.getLocalities();
+        Locality locality = localityGenerator.getLocality();
 
         // add it to a Set before saving (force equals/hashcode)
-        Set<Localities> set = newHashSet(localities, localities);
+        Set<Locality> set = newHashSet(locality, locality);
         assertThat(set).hasSize(1);
 
-        localitiesRepository.save(localities);
+        localityRepository.save(locality);
         entityManager.flush();
 
         // reload it from cache and check equality
         SearchParameters searchParameters = new SearchParameters();
-        searchParameters.property(newPropertySelector(Localities_.id).selected(localities.getId()));
+        searchParameters.property(newPropertySelector(Locality_.id).selected(locality.getId()));
 
         // clear cache to force reload from db
         entityManager.clear();
@@ -109,7 +109,7 @@ public class LocalitiesRepositoryIT {
         }
 
         // pk are equals...
-        assertThat(localities).isEqualTo(localitiesRepository.findUnique(ser));
+        assertThat(locality).isEqualTo(localityRepository.findUnique(ser));
     }
 
 }

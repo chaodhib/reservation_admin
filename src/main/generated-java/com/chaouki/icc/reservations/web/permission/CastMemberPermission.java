@@ -11,13 +11,13 @@ package com.chaouki.icc.reservations.web.permission;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import com.chaouki.icc.reservations.domain.Localities;
+import com.chaouki.icc.reservations.domain.CastMember;
 import com.chaouki.icc.reservations.web.permission.support.GenericPermission;
 
 @Named
 @Singleton
-public class LocalitiesPermission extends GenericPermission<Localities> {
-    public LocalitiesPermission() {
-        super(Localities.class);
+public class CastMemberPermission extends GenericPermission<CastMember> {
+    public CastMemberPermission() {
+        super(CastMember.class);
     }
 }

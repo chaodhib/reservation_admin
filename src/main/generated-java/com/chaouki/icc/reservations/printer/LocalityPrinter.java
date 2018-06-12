@@ -13,30 +13,30 @@ import java.util.Locale;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import com.chaouki.icc.reservations.domain.Localities;
-import com.chaouki.icc.reservations.domain.Localities_;
+import com.chaouki.icc.reservations.domain.Locality;
+import com.chaouki.icc.reservations.domain.Locality_;
 import com.chaouki.icc.reservations.printer.support.GenericPrinter;
 
 /**
- * {@link GenericPrinter} for {@link Localities} 
+ * {@link GenericPrinter} for {@link Locality} 
  *
  * @see GenericPrinter
  * @see TypeAwarePrinter
  */
 @Named
 @Singleton
-public class LocalitiesPrinter extends GenericPrinter<Localities> {
-    public LocalitiesPrinter() {
-        super(Localities.class, Localities_.locality);
+public class LocalityPrinter extends GenericPrinter<Locality> {
+    public LocalityPrinter() {
+        super(Locality.class, Locality_.locality2);
     }
 
     @Override
-    public String print(Localities localities, Locale locale) {
-        if (localities == null) {
+    public String print(Locality locality, Locale locale) {
+        if (locality == null) {
             return "";
         }
         StringBuilder ret = new StringBuilder();
-        appendIfNotEmpty(ret, localities.getLocality());
+        appendIfNotEmpty(ret, locality.getLocality2());
         return ret.toString();
     }
 }

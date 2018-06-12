@@ -18,21 +18,21 @@ import org.junit.Test;
 import com.chaouki.icc.reservations.util.ValueGenerator;
 
 /**
- * Basic tests for Localities
+ * Basic tests for Locality
  */
 @SuppressWarnings("unused")
-public class LocalitiesTest {
+public class LocalityTest {
 
     // test unique primary key
     @Test
     public void newInstanceHasNoPrimaryKey() {
-        Localities model = new Localities();
+        Locality model = new Locality();
         assertThat(model.isIdSet()).isFalse();
     }
 
     @Test
     public void isIdSetReturnsTrue() {
-        Localities model = new Localities();
+        Locality model = new Locality();
         model.setId(ValueGenerator.getUniqueInteger());
         assertThat(model.getId()).isNotNull();
         assertThat(model.isIdSet()).isTrue();
@@ -40,11 +40,11 @@ public class LocalitiesTest {
 
     @Test
     public void equalsUsingBusinessKey() {
-        Localities model1 = new Localities();
-        Localities model2 = new Localities();
-        String locality = ValueGenerator.getUniqueString(60);
-        model1.setLocality(locality);
-        model2.setLocality(locality);
+        Locality model1 = new Locality();
+        Locality model2 = new Locality();
+        String locality2 = ValueGenerator.getUniqueString(60);
+        model1.setLocality2(locality2);
+        model2.setLocality2(locality2);
         assertThat(model1).isEqualTo(model2);
         assertThat(model2).isEqualTo(model1);
         assertThat(model1.hashCode()).isEqualTo(model2.hashCode());

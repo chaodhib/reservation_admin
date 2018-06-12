@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import com.chaouki.icc.reservations.domain.Localities;
+import com.chaouki.icc.reservations.domain.Locality;
 import com.chaouki.icc.reservations.domain.Locations;
 import com.chaouki.icc.reservations.util.ValueGenerator;
 
@@ -37,14 +37,14 @@ public class LocationsGenerator {
         locations.setWebsite("a");
         locations.setPhone("a");
         // mandatory relation
-        Localities locality = localitiesGenerator.getLocalities();
-        localitiesRepository.save(locality);
+        Locality locality = localityGenerator.getLocality();
+        localityRepository.save(locality);
         locations.setLocality(locality);
         return locations;
     }
 
     @Inject
-    private LocalitiesRepository localitiesRepository;
+    private LocalityRepository localityRepository;
     @Inject
-    private LocalitiesGenerator localitiesGenerator;
+    private LocalityGenerator localityGenerator;
 }

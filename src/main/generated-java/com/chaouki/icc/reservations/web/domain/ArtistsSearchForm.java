@@ -14,7 +14,6 @@ import javax.inject.Named;
 
 import com.chaouki.icc.reservations.domain.Artists;
 import com.chaouki.icc.reservations.domain.Artists_;
-import com.chaouki.icc.reservations.domain.Types;
 import com.chaouki.icc.reservations.web.domain.support.GenericSearchForm;
 import com.chaouki.icc.reservations.web.faces.ConversationContextScoped;
 import com.jaxio.jpa.querybyexample.PropertySelector;
@@ -31,7 +30,6 @@ public class ArtistsSearchForm extends GenericSearchForm<Artists, Integer, Artis
     protected Artists artists = new Artists();
     protected PropertySelector<Artists, String> firstnameSelector = newPropertySelector(Artists_.firstname);
     protected PropertySelector<Artists, String> lastnameSelector = newPropertySelector(Artists_.lastname);
-    protected PropertySelector<Artists, Types> typesSelector = newPropertySelector(false, Artists_.types);
 
     public Artists getArtists() {
         return artists;
@@ -51,7 +49,6 @@ public class ArtistsSearchForm extends GenericSearchForm<Artists, Integer, Artis
     public SearchParameters toSearchParameters() {
         SearchParameters sp = searchParameters();
         sp.property(firstnameSelector, lastnameSelector);
-        sp.property(typesSelector);
         return sp;
     }
 
@@ -60,7 +57,6 @@ public class ArtistsSearchForm extends GenericSearchForm<Artists, Integer, Artis
         this.artists = other.getArtists();
         this.firstnameSelector = other.getFirstnameSelector();
         this.lastnameSelector = other.getLastnameSelector();
-        this.typesSelector = other.getTypesSelector();
     }
 
     // Property selectors
@@ -70,10 +66,5 @@ public class ArtistsSearchForm extends GenericSearchForm<Artists, Integer, Artis
 
     public PropertySelector<Artists, String> getLastnameSelector() {
         return lastnameSelector;
-    }
-
-    // Relation selectors
-    public PropertySelector<Artists, Types> getTypesSelector() {
-        return typesSelector;
     }
 }

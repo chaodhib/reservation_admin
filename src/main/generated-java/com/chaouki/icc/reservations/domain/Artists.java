@@ -8,21 +8,14 @@
  */
 package com.chaouki.icc.reservations.domain;
 
-import static javax.persistence.CascadeType.MERGE;
-import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
@@ -46,9 +39,6 @@ public class Artists implements Identifiable<Integer>, Serializable {
     private Integer id;
     private String firstname;
     private String lastname;
-
-    // Many to many
-    private List<Types> types = new ArrayList<Types>();
     // -- [id] ------------------------
 
     @Override
@@ -108,53 +98,6 @@ public class Artists implements Identifiable<Integer>, Serializable {
     public Artists lastname(String lastname) {
         setLastname(lastname);
         return this;
-    }
-
-    // -----------------------------------------------------------------
-    // Many to Many
-    // -----------------------------------------------------------------
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-    // many-to-many: artists ==> types
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-
-    /**
-     * Returns the {@link #types} list.
-     */
-    @JoinTable(name = "artiste_type", joinColumns = @JoinColumn(name = "artist_id") , inverseJoinColumns = @JoinColumn(name = "type_id") )
-    @ManyToMany(cascade = { PERSIST, MERGE })
-    public List<Types> getTypes() {
-        return types;
-    }
-
-    /**
-     * Set the {@link #types} list.
-     *
-     * @param types the list of Types
-     */
-    public void setTypes(List<Types> types) {
-        this.types = types;
-    }
-
-    /**
-     * Helper method to add the passed {@link Types} to the {@link #types} list.
-     */
-    public boolean addType(Types type) {
-        return getTypes().add(type);
-    }
-
-    /**
-     * Helper method to remove the passed {@link Types} from the {@link #types} list.
-     */
-    public boolean removeType(Types type) {
-        return getTypes().remove(type);
-    }
-
-    /**
-     * Helper method to determine if the passed {@link Types} is present in the {@link #types} list.
-     */
-    public boolean containsType(Types type) {
-        return getTypes() != null && getTypes().contains(type);
     }
 
     /**

@@ -11,11 +11,14 @@ package com.chaouki.icc.reservations.domain;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@StaticMetamodel(Artists.class)
-public abstract class Artists_ {
+@StaticMetamodel(CastMember.class)
+public abstract class CastMember_ {
 
     // Raw attributes
-    public static volatile SingularAttribute<Artists, Integer> id;
-    public static volatile SingularAttribute<Artists, String> firstname;
-    public static volatile SingularAttribute<Artists, String> lastname;
+    public static volatile SingularAttribute<CastMember, Integer> id;
+
+    // Many to one
+    public static volatile SingularAttribute<CastMember, Artists> artist;
+    public static volatile SingularAttribute<CastMember, Types> type;
+    public static volatile SingularAttribute<CastMember, Shows> show;
 }

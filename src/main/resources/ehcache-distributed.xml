@@ -101,9 +101,10 @@
 
 		# database related
 		com.chaouki.icc.reservations.domain.Artists
-		com.chaouki.icc.reservations.domain.Artists.types
 
-		com.chaouki.icc.reservations.domain.Localities
+		com.chaouki.icc.reservations.domain.CastMember
+
+		com.chaouki.icc.reservations.domain.Locality
 
 		com.chaouki.icc.reservations.domain.Locations
 

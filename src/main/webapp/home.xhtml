@@ -53,12 +53,22 @@
 					</h:commandLink>
 				</li>
 				<li>
-					<h:outputText value="#{msg.localities} " />
-					<h:commandLink id="selectLocalitiess" action="#{localitiesController.beginSearch()}" rendered="#{localitiesPermission.canSearch()}" ajax="false" immediate="true">
+					<h:outputText value="#{msg.castMember} " />
+					<h:commandLink id="selectCastMembers" action="#{castMemberController.beginSearch()}" rendered="#{castMemberPermission.canSearch()}" ajax="false" immediate="true">
 						<h:outputText value="#{msg.home_conversation_search}"/>
 					</h:commandLink>
 					<h:outputText value=" " />
-					<h:commandLink id="newLocalitiess" action="#{localitiesController.beginCreate()}" rendered="#{localitiesPermission.canCreate()}" ajax="false" immediate="true">
+					<h:commandLink id="newCastMembers" action="#{castMemberController.beginCreate()}" rendered="#{castMemberPermission.canCreate()}" ajax="false" immediate="true">
+						<h:outputText value="#{msg.home_conversation_create}"/>
+					</h:commandLink>
+				</li>
+				<li>
+					<h:outputText value="#{msg.locality} " />
+					<h:commandLink id="selectLocalities" action="#{localityController.beginSearch()}" rendered="#{localityPermission.canSearch()}" ajax="false" immediate="true">
+						<h:outputText value="#{msg.home_conversation_search}"/>
+					</h:commandLink>
+					<h:outputText value=" " />
+					<h:commandLink id="newLocalities" action="#{localityController.beginCreate()}" rendered="#{localityPermission.canCreate()}" ajax="false" immediate="true">
 						<h:outputText value="#{msg.home_conversation_create}"/>
 					</h:commandLink>
 				</li>

@@ -20,36 +20,5 @@
 		<app:input id="firstname" value="#{artistsEditForm.artists.firstname}" size="60" label="artists_firstname" required="true" />
 		<app:input id="lastname" value="#{artistsEditForm.artists.lastname}" size="60" label="artists_lastname" required="true" />
 	</ui:define>
-	<ui:define name="tabs">
-			<p:tab id="types" title="#{msg.artists_types}" rendered="#{typesPermission.canUse() and not (print and artistsEditForm.artists.types.isEmpty())}">
-				<p:dataTable id="typesList" var="item" value="#{artistsEditForm.types.model}"
-					paginator="#{not print and artistsEditForm.artists.types.size() gt 10}" rows="#{print ? null : 10}"
-					rowsPerPageTemplate="10,25,50,100" paginatorPosition="bottom"
-					selection="#{artistsEditForm.types.model.selectedRow}" selectionMode="single" emptyMessage="#{msg.collection_empty}">
-					<p:ajax event="rowSelect" listener="#{artistsEditForm.types.onRowSelect}" />
-					<p:column id="types_type" headerText="#{msg.types_type}" sortBy="#{item.type}" styleClass="type">
-						#{item.type}
-					</p:column>
-					<p:column id="actions" styleClass="actions-column" resizable="false">
-						<f:facet name="header">
-							<app:iconSearch id="selectType" model="#{artistsEditForm.types}" title="artists_types" permission="#{typesPermission}" />
-							<app:iconAdd id="addType" model="#{artistsEditForm.types}" title="artists_types" permission="#{typesPermission}"/>
-						</f:facet>
-						<app:iconView model="#{artistsEditForm.types}" item="#{item}" permission="#{typesPermission}">
-							<f:setPropertyActionListener value="#{item}" target="#{artistsEditForm.types.model.selectedRow}" />
-						</app:iconView>
-						<app:iconEdit model="#{artistsEditForm.types}" item="#{item}" permission="#{typesPermission}">
-							<f:setPropertyActionListener value="#{item}" target="#{artistsEditForm.types.model.selectedRow}" />
-						</app:iconEdit>
-						<app:iconRemove dialogWidgetVar="askForRemoveTypeDialog" item="#{item}" permission="#{typesPermission}">
-							<f:setPropertyActionListener value="#{item}" target="#{artistsEditForm.types.model.selectedRow}" />
-						</app:iconRemove>
-					</p:column>
-				</p:dataTable>
-			</p:tab>
-	</ui:define>
-	<ui:define name="custom-dialogs">
-		<app:confirmToManyRemoveDialog widgetVar="askForRemoveTypeDialog" toManyAction="#{artistsEditForm.types}" update=":form:tabs:typesList :form:messages" />
-	</ui:define>
 </app:edit>
 </ui:composition>

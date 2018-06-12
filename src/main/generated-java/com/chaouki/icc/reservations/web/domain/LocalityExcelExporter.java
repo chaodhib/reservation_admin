@@ -11,35 +11,35 @@ package com.chaouki.icc.reservations.web.domain;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.chaouki.icc.reservations.domain.Localities;
+import com.chaouki.icc.reservations.domain.Locality;
 import com.chaouki.icc.reservations.web.domain.support.GenericExcelExporter;
 import com.chaouki.icc.reservations.web.faces.ConversationContextScoped;
 
 /**
- * Exports to excel document {@link Localities} search criteria and result. 
+ * Exports to excel document {@link Locality} search criteria and result. 
  */
 @Named
 @ConversationContextScoped
-public class LocalitiesExcelExporter extends GenericExcelExporter<Localities> {
+public class LocalityExcelExporter extends GenericExcelExporter<Locality> {
     @Inject
-    protected LocalitiesSearchForm sf;
+    protected LocalitySearchForm sf;
 
-    public LocalitiesExcelExporter() {
-        super("localities_postalCode", "localities_locality");
+    public LocalityExcelExporter() {
+        super("locality_postalCode", "locality_locality2");
     }
 
     @Override
-    protected void fillResultItem(int row, Localities item) {
+    protected void fillResultItem(int row, Locality item) {
         int col = 0;
         setValue(row, col++, item.getPostalCode());
-        setValue(row, col++, item.getLocality());
+        setValue(row, col++, item.getLocality2());
     }
 
     @Override
     public void fillSearchCriteria(int row) {
         useCriteriaSheet();
 
-        setSelector(row++, 0, "localities_postalCode", sf.getPostalCodeSelector());
-        setSelector(row++, 0, "localities_locality", sf.getLocalitySelector());
+        setSelector(row++, 0, "locality_postalCode", sf.getPostalCodeSelector());
+        setSelector(row++, 0, "locality_locality2", sf.getLocality2Selector());
     }
 }

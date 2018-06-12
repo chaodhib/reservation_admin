@@ -12,7 +12,7 @@ import static com.jaxio.jpa.querybyexample.PropertySelector.newPropertySelector;
 
 import javax.inject.Named;
 
-import com.chaouki.icc.reservations.domain.Localities;
+import com.chaouki.icc.reservations.domain.Locality;
 import com.chaouki.icc.reservations.domain.Locations;
 import com.chaouki.icc.reservations.domain.Locations_;
 import com.chaouki.icc.reservations.web.domain.support.GenericSearchForm;
@@ -34,7 +34,7 @@ public class LocationsSearchForm extends GenericSearchForm<Locations, Integer, L
     protected PropertySelector<Locations, String> addressSelector = newPropertySelector(Locations_.address);
     protected PropertySelector<Locations, String> websiteSelector = newPropertySelector(Locations_.website);
     protected PropertySelector<Locations, String> phoneSelector = newPropertySelector(Locations_.phone);
-    protected PropertySelector<Locations, Localities> localitySelector = newPropertySelector(Locations_.locality);
+    protected PropertySelector<Locations, Locality> localitySelector = newPropertySelector(Locations_.locality);
 
     public Locations getLocations() {
         return locations;
@@ -91,7 +91,7 @@ public class LocationsSearchForm extends GenericSearchForm<Locations, Integer, L
     }
 
     // Relation selectors
-    public PropertySelector<Locations, Localities> getLocalitySelector() {
+    public PropertySelector<Locations, Locality> getLocalitySelector() {
         return localitySelector;
     }
 }

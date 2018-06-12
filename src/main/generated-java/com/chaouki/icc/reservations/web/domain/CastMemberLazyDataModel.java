@@ -13,22 +13,22 @@ import javax.inject.Named;
 
 import org.primefaces.model.LazyDataModel;
 
-import com.chaouki.icc.reservations.domain.Localities;
-import com.chaouki.icc.reservations.repository.LocalitiesRepository;
+import com.chaouki.icc.reservations.domain.CastMember;
+import com.chaouki.icc.reservations.repository.CastMemberRepository;
 import com.chaouki.icc.reservations.web.domain.support.GenericLazyDataModel;
 import com.chaouki.icc.reservations.web.faces.ConversationContextScoped;
 
 /**
- * Provide PrimeFaces {@link LazyDataModel} for {@link Localities}
+ * Provide PrimeFaces {@link LazyDataModel} for {@link CastMember}
  */
 @Named
 @ConversationContextScoped
-public class LocalitiesLazyDataModel extends GenericLazyDataModel<Localities, Integer, LocalitiesSearchForm> {
+public class CastMemberLazyDataModel extends GenericLazyDataModel<CastMember, Integer, CastMemberSearchForm> {
     private static final long serialVersionUID = 1L;
 
     @Inject
-    public LocalitiesLazyDataModel(LocalitiesRepository localitiesRepository, LocalitiesController localitiesController,
-            LocalitiesSearchForm localitiesSearchForm, LocalitiesExcelExporter localitiesExcelExporter) {
-        super(localitiesRepository, localitiesController, localitiesSearchForm, localitiesExcelExporter);
+    public CastMemberLazyDataModel(CastMemberRepository castMemberRepository, CastMemberController castMemberController,
+            CastMemberSearchForm castMemberSearchForm, CastMemberExcelExporter castMemberExcelExporter) {
+        super(castMemberRepository, castMemberController, castMemberSearchForm, castMemberExcelExporter);
     }
 }

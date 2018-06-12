@@ -12,30 +12,32 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import com.chaouki.icc.reservations.domain.Artists;
-import com.chaouki.icc.reservations.repository.ArtistsRepository;
+import com.chaouki.icc.reservations.domain.CastMember;
+import com.chaouki.icc.reservations.repository.CastMemberRepository;
 import com.jaxio.jpa.querybyexample.EntityGraphLoader;
 
 /**
- * Preloads the {@link Artists} associations required by the view layer.
+ * Preloads the {@link CastMember} associations required by the view layer.
  * 
  * Do not use other GraphLoaders in this GraphLoader. 
  */
 @Named
 @Singleton
-public class ArtistsGraphLoader extends EntityGraphLoader<Artists, Integer> {
+public class CastMemberGraphLoader extends EntityGraphLoader<CastMember, Integer> {
     // required by cglib to create a proxy around the object as we are using the @Transactional annotation
-    protected ArtistsGraphLoader() {
+    protected CastMemberGraphLoader() {
         super();
     }
 
     @Inject
-    public ArtistsGraphLoader(ArtistsRepository artistsRepository) {
-        super(artistsRepository);
+    public CastMemberGraphLoader(CastMemberRepository castMemberRepository) {
+        super(castMemberRepository);
     }
 
     @Override
-    public void loadGraph(Artists artists) {
-        loadCollection(artists.getTypes());
+    public void loadGraph(CastMember castMember) {
+        loadSingular(castMember.getArtist());
+        loadSingular(castMember.getType());
+        loadSingular(castMember.getShow());
     }
 }

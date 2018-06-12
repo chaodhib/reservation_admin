@@ -38,30 +38,6 @@ public class ArtistsTest {
         assertThat(model.isIdSet()).isTrue();
     }
 
-    //-------------------------------------------------------------
-    // Pure Many to Many
-    //-------------------------------------------------------------
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    @Test
-    public void manyToMany_addType() {
-        Artists many1 = new Artists();
-        Types many2 = new Types();
-
-        // add it
-        many1.addType(many2);
-
-        // check it is propagated
-        assertThat(many1.getTypes()).contains(many2);
-        // now let's remove it
-        many1.removeType(many2);
-
-        // check it is propagated
-        assertThat(many1.getTypes().contains(many2)).isFalse();
-    }
-
     /*
     public void equalsUsingPk() {
         Artists model1 = new Artists();

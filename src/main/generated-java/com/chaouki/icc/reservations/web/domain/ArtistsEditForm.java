@@ -8,18 +8,13 @@
  */
 package com.chaouki.icc.reservations.web.domain;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.chaouki.icc.reservations.domain.Artists;
-import com.chaouki.icc.reservations.domain.Artists_;
-import com.chaouki.icc.reservations.domain.Types;
 import com.chaouki.icc.reservations.repository.ArtistsRepository;
 import com.chaouki.icc.reservations.web.domain.support.GenericEditForm;
-import com.chaouki.icc.reservations.web.domain.support.GenericToManyAssociation;
 import com.chaouki.icc.reservations.web.faces.ConversationContextScoped;
-import com.chaouki.icc.reservations.web.util.TabBean;
 
 /**
  * View Helper/Controller to edit {@link Artists}.
@@ -29,22 +24,10 @@ import com.chaouki.icc.reservations.web.util.TabBean;
 public class ArtistsEditForm extends GenericEditForm<Artists, Integer> {
     @Inject
     protected ArtistsController artistsController;
-    @Inject
-    protected TypesController typesController;
-    protected GenericToManyAssociation<Types, Integer> types;
-    protected TabBean tabBean = new TabBean();
 
     @Inject
-    public ArtistsEditForm(ArtistsRepository artistsRepository, ArtistsGraphLoader artistsGraphLoader) {
-        super(artistsRepository, artistsGraphLoader);
-    }
-
-    /**
-     * View helper to store the x-to-many associations tab's index. 
-     */
-    @Override
-    public TabBean getTabBean() {
-        return tabBean;
+    public ArtistsEditForm(ArtistsRepository artistsRepository) {
+        super(artistsRepository);
     }
 
     /**
@@ -56,25 +39,5 @@ public class ArtistsEditForm extends GenericEditForm<Artists, Integer> {
 
     public String print() {
         return artistsController.print(getArtists());
-    }
-
-    @PostConstruct
-    void setupTypesActions() {
-        types = new GenericToManyAssociation<Types, Integer>(getArtists().getTypes(), typesController, Artists_.types) {
-            @Override
-            protected void remove(Types types) {
-                getArtists().removeType(types);
-            }
-
-            @Override
-            protected void add(Types types) {
-                // add the object only to the type side of the relation 
-                getArtists().getTypes().add(types);
-            }
-        };
-    }
-
-    public GenericToManyAssociation<Types, Integer> getTypes() {
-        return types;
     }
 }

@@ -15,13 +15,13 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:app="http://jaxio.com/app"
 	xmlns:appcc="http://xmlns.jcp.org/jsf/composite/components">
-<app:edit bean="#{localitiesEditForm}" title="#{localitiesEditForm.title}">
+<app:edit bean="#{localityEditForm}" title="#{localityEditForm.title}">
 	<ui:define name="form">
-		<app:input id="postalCode" value="#{localitiesEditForm.localities.postalCode}" size="6" label="localities_postalCode" required="true">
-			<f:validateBean binding="#{jpaUniqueValidator}" entity="#{localitiesEditForm.localities}" property="postalCode" />
+		<app:input id="postalCode" value="#{localityEditForm.locality.postalCode}" size="6" label="locality_postalCode" required="true">
+			<f:validateBean binding="#{jpaUniqueValidator}" entity="#{localityEditForm.locality}" property="postalCode" />
 		</app:input>
-		<app:input id="locality" value="#{localitiesEditForm.localities.locality}" size="60" label="localities_locality" required="true">
-			<f:validateBean binding="#{jpaUniqueValidator}" entity="#{localitiesEditForm.localities}" property="locality" />
+		<app:input id="locality2" value="#{localityEditForm.locality.locality2}" size="60" label="locality_locality2" required="true">
+			<f:validateBean binding="#{jpaUniqueValidator}" entity="#{localityEditForm.locality}" property="locality2" />
 		</app:input>
 	</ui:define>
 </app:edit>

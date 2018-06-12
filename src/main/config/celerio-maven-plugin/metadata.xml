@@ -8,72 +8,12 @@
   </jdbcConnectivity>
   <databaseInfo databaseMajorVersion="5" databaseMinorVersion="6" databaseProductName="MySQL" databaseProductVersion="5.6.24-log" driverMajorVersion="8" driverMinorVersion="0" driverName="MySQL Connector/J" driverVersion="mysql-connector-java-8.0.11 (Revision: 6d4eaa273bc181b4cf1c8ad0821a2227f116fedf)" extraInfo=""/>
   <tables>
-    <table name="artiste_type" type="TABLE" catalog="reservations">
-      <columns>
-        <column name="id" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER">
-          <metaAttributes>
-            <metaAttribute name="type" value="int(11)"/>
-            <metaAttribute name="extra" value="auto_increment"/>
-          </metaAttributes>
-        </column>
-        <column name="artist_id" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="10" type="INTEGER">
-          <metaAttributes>
-            <metaAttribute name="type" value="int(11)"/>
-          </metaAttributes>
-        </column>
-        <column name="type_id" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="3" size="10" type="INTEGER">
-          <metaAttributes>
-            <metaAttribute name="type" value="int(11)"/>
-          </metaAttributes>
-        </column>
-      </columns>
-      <indexes>
-        <indexe columnName="id" indexName="PRIMARY" nonUnique="false"/>
-      </indexes>
-      <importedKeys>
-        <importedKey fkColumnName="artist_id" fkName="artiste_type_ibfk_1" pkColumnName="id" pkTableName="artists" pkTableCatalog="reservations"/>
-        <importedKey fkColumnName="type_id" fkName="artiste_type_ibfk_2" pkColumnName="id" pkTableName="types" pkTableCatalog="reservations"/>
-      </importedKeys>
-      <primaryKeys>
-        <primaryKey>id</primaryKey>
-      </primaryKeys>
-    </table>
-    <table name="artiste_type_shows" type="TABLE" catalog="reservations">
-      <columns>
-        <column name="id" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER">
-          <metaAttributes>
-            <metaAttribute name="type" value="int(11)"/>
-            <metaAttribute name="extra" value="auto_increment"/>
-          </metaAttributes>
-        </column>
-        <column name="cast_member_id" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="2" size="10" type="INTEGER">
-          <metaAttributes>
-            <metaAttribute name="type" value="int(11)"/>
-          </metaAttributes>
-        </column>
-        <column name="shows_id" decimalDigits="0" autoIncrement="false" nullable="true" ordinalPosition="3" size="10" type="INTEGER">
-          <metaAttributes>
-            <metaAttribute name="type" value="int(11)"/>
-          </metaAttributes>
-        </column>
-      </columns>
-      <indexes>
-        <indexe columnName="id" indexName="PRIMARY" nonUnique="false"/>
-      </indexes>
-      <importedKeys>
-        <importedKey fkColumnName="shows_id" fkName="artiste_type_shows_ibfk_1" pkColumnName="id" pkTableName="shows" pkTableCatalog="reservations"/>
-        <importedKey fkColumnName="cast_member_id" fkName="artiste_type_shows_ibfk_2" pkColumnName="id" pkTableName="artiste_type" pkTableCatalog="reservations"/>
-      </importedKeys>
-      <primaryKeys>
-        <primaryKey>id</primaryKey>
-      </primaryKeys>
-    </table>
     <table name="artists" type="TABLE" catalog="reservations">
       <columns>
         <column name="id" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER">
           <metaAttributes>
-            <metaAttribute name="type" value="int(11)"/>
             <metaAttribute name="extra" value="auto_increment"/>
+            <metaAttribute name="type" value="int(11)"/>
           </metaAttributes>
         </column>
         <column name="firstname" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="60" type="VARCHAR">
@@ -95,12 +35,48 @@
         <primaryKey>id</primaryKey>
       </primaryKeys>
     </table>
-    <table name="localities" type="TABLE" catalog="reservations">
+    <table name="cast_member" type="TABLE" catalog="reservations">
       <columns>
         <column name="id" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER">
           <metaAttributes>
             <metaAttribute name="type" value="int(11)"/>
             <metaAttribute name="extra" value="auto_increment"/>
+          </metaAttributes>
+        </column>
+        <column name="artist_id" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="10" type="INTEGER">
+          <metaAttributes>
+            <metaAttribute name="type" value="int(11)"/>
+          </metaAttributes>
+        </column>
+        <column name="type_id" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="3" size="10" type="INTEGER">
+          <metaAttributes>
+            <metaAttribute name="type" value="int(11)"/>
+          </metaAttributes>
+        </column>
+        <column name="show_id" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="4" size="10" type="INTEGER">
+          <metaAttributes>
+            <metaAttribute name="type" value="int(11)"/>
+          </metaAttributes>
+        </column>
+      </columns>
+      <indexes>
+        <indexe columnName="id" indexName="PRIMARY" nonUnique="false"/>
+      </indexes>
+      <importedKeys>
+        <importedKey fkColumnName="artist_id" fkName="artiste_type_ibfk_1" pkColumnName="id" pkTableName="artists" pkTableCatalog="reservations"/>
+        <importedKey fkColumnName="type_id" fkName="artiste_type_ibfk_2" pkColumnName="id" pkTableName="types" pkTableCatalog="reservations"/>
+        <importedKey fkColumnName="show_id" fkName="artiste_type_ibfk_3" pkColumnName="id" pkTableName="shows" pkTableCatalog="reservations"/>
+      </importedKeys>
+      <primaryKeys>
+        <primaryKey>id</primaryKey>
+      </primaryKeys>
+    </table>
+    <table name="locality" type="TABLE" catalog="reservations">
+      <columns>
+        <column name="id" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER">
+          <metaAttributes>
+            <metaAttribute name="extra" value="auto_increment"/>
+            <metaAttribute name="type" value="int(11)"/>
           </metaAttributes>
         </column>
         <column name="postal_code" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="6" type="VARCHAR">
@@ -168,7 +144,7 @@
         <indexe columnName="slug" indexName="slug" nonUnique="false"/>
       </indexes>
       <importedKeys>
-        <importedKey fkColumnName="locality_id" fkName="locations_ibfk_1" pkColumnName="id" pkTableName="localities" pkTableCatalog="reservations"/>
+        <importedKey fkColumnName="locality_id" fkName="locations_ibfk_1" pkColumnName="id" pkTableName="locality" pkTableCatalog="reservations"/>
       </importedKeys>
       <primaryKeys>
         <primaryKey>id</primaryKey>
@@ -320,8 +296,8 @@
       <columns>
         <column name="id" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER">
           <metaAttributes>
-            <metaAttribute name="extra" value="auto_increment"/>
             <metaAttribute name="type" value="int(11)"/>
+            <metaAttribute name="extra" value="auto_increment"/>
           </metaAttributes>
         </column>
         <column name="type" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="60" type="VARCHAR">
@@ -342,8 +318,8 @@
       <columns>
         <column name="id" decimalDigits="0" autoIncrement="true" nullable="false" ordinalPosition="1" size="10" type="INTEGER">
           <metaAttributes>
-            <metaAttribute name="type" value="int(11)"/>
             <metaAttribute name="extra" value="auto_increment"/>
+            <metaAttribute name="type" value="int(11)"/>
           </metaAttributes>
         </column>
         <column name="login" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="30" type="VARCHAR">

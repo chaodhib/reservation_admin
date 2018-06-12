@@ -13,7 +13,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 
-import com.chaouki.icc.reservations.domain.Localities;
+import com.chaouki.icc.reservations.domain.Locality;
 import com.chaouki.icc.reservations.domain.Locations;
 import com.chaouki.icc.reservations.domain.Locations_;
 import com.chaouki.icc.reservations.repository.LocationsRepository;
@@ -30,8 +30,8 @@ public class LocationsEditForm extends GenericEditForm<Locations, Integer> {
     @Inject
     protected LocationsController locationsController;
     @Inject
-    protected LocalitiesController localitiesController;
-    protected GenericToOneAssociation<Localities, Integer> locality;
+    protected LocalityController localityController;
+    protected GenericToOneAssociation<Locality, Integer> locality;
 
     @Inject
     public LocationsEditForm(LocationsRepository locationsRepository, LocationsGraphLoader locationsGraphLoader) {
@@ -51,26 +51,26 @@ public class LocationsEditForm extends GenericEditForm<Locations, Integer> {
 
     @PostConstruct
     void setupLocalityActions() {
-        locality = new GenericToOneAssociation<Localities, Integer>(localitiesController, Locations_.locality) {
+        locality = new GenericToOneAssociation<Locality, Integer>(localityController, Locations_.locality) {
             @Override
-            protected Localities get() {
+            protected Locality get() {
                 return getLocations().getLocality();
             }
 
             @Override
-            protected void set(Localities localities) {
-                getLocations().setLocality(localities);
+            protected void set(Locality locality) {
+                getLocations().setLocality(locality);
             }
 
             @NotNull
             @Override
-            public Localities getSelected() {
+            public Locality getSelected() {
                 return super.getSelected();
             }
         };
     }
 
-    public GenericToOneAssociation<Localities, Integer> getLocality() {
+    public GenericToOneAssociation<Locality, Integer> getLocality() {
         return locality;
     }
 }

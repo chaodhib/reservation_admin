@@ -22,9 +22,6 @@
 	<entry key="artists_firstname">Firstname</entry>
 	<entry key="artists_lastname">Lastname</entry>
 
-	<!-- many-to-many -->
-	<entry key="artists_types">Types</entry>
-
 	<!-- uniques -->
 	<entry key="artists_composite_unique_constraint_error">Une contrainte d'unicité multiple n'est pas respectée sur Artists</entry>
 </properties>

@@ -20,8 +20,6 @@
 		<ui:define name="filters">
 			<app:inputMultiAutoComplete id="firstname" value="#{artistsSearchForm.firstnameSelector}" label="artists_firstname" completeMethod="completeProperty" property="firstname" />
 			<app:inputMultiAutoComplete id="lastname" value="#{artistsSearchForm.lastnameSelector}" label="artists_lastname" completeMethod="completeProperty" property="lastname" />
-			<app:multiAutoComplete id="typesSelector" value="#{artistsSearchForm.typesSelector}" label="artists_types" 
-				controller="#{typesController}" permission="#{typesPermission}"/>
 		</ui:define>
 		<ui:define name="result">
 			<c:if test="#{not multiCheckboxSelection}">

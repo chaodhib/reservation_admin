@@ -11,33 +11,33 @@ package com.chaouki.icc.reservations.web.domain;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.chaouki.icc.reservations.domain.Localities;
-import com.chaouki.icc.reservations.repository.LocalitiesRepository;
+import com.chaouki.icc.reservations.domain.Locality;
+import com.chaouki.icc.reservations.repository.LocalityRepository;
 import com.chaouki.icc.reservations.web.domain.support.GenericEditForm;
 import com.chaouki.icc.reservations.web.faces.ConversationContextScoped;
 
 /**
- * View Helper/Controller to edit {@link Localities}.
+ * View Helper/Controller to edit {@link Locality}.
  */
 @Named
 @ConversationContextScoped
-public class LocalitiesEditForm extends GenericEditForm<Localities, Integer> {
+public class LocalityEditForm extends GenericEditForm<Locality, Integer> {
     @Inject
-    protected LocalitiesController localitiesController;
+    protected LocalityController localityController;
 
     @Inject
-    public LocalitiesEditForm(LocalitiesRepository localitiesRepository) {
-        super(localitiesRepository);
+    public LocalityEditForm(LocalityRepository localityRepository) {
+        super(localityRepository);
     }
 
     /**
      * The entity to edit/view.
      */
-    public Localities getLocalities() {
+    public Locality getLocality() {
         return getEntity();
     }
 
     public String print() {
-        return localitiesController.print(getLocalities());
+        return localityController.print(getLocality());
     }
 }

@@ -39,7 +39,7 @@ public class LocationsTest {
     }
 
     //-------------------------------------------------------------
-    // Many to One:  Locations.locality ==> Localities.id
+    // Many to One:  Locations.locality ==> Locality.id
     //-------------------------------------------------------------
 
     @Test
@@ -47,7 +47,7 @@ public class LocationsTest {
         Locations many = new Locations();
 
         // init
-        Localities one = new Localities();
+        Locality one = new Locality();
         one.setId(ValueGenerator.getUniqueInteger());
         many.setLocality(one);
 

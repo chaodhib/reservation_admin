@@ -15,21 +15,21 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:app="http://jaxio.com/app"
 	xmlns:appcc="http://xmlns.jcp.org/jsf/composite/components">
-	<app:search title="localities_search" model="#{localitiesLazyDataModel}" searchForm="#{localitiesSearchForm}"
-		controller="#{localitiesController}" permission="#{localitiesPermission}">
+	<app:search title="locality_search" model="#{localityLazyDataModel}" searchForm="#{localitySearchForm}"
+		controller="#{localityController}" permission="#{localityPermission}">
 		<ui:define name="filters">
-			<app:inputMultiAutoComplete id="postalCode" value="#{localitiesSearchForm.postalCodeSelector}" label="localities_postalCode" completeMethod="completeProperty" property="postalCode" />
-			<app:inputMultiAutoComplete id="locality" value="#{localitiesSearchForm.localitySelector}" label="localities_locality" completeMethod="completeProperty" property="locality" />
+			<app:inputMultiAutoComplete id="postalCode" value="#{localitySearchForm.postalCodeSelector}" label="locality_postalCode" completeMethod="completeProperty" property="postalCode" />
+			<app:inputMultiAutoComplete id="locality2" value="#{localitySearchForm.locality2Selector}" label="locality_locality2" completeMethod="completeProperty" property="locality2" />
 		</ui:define>
 		<ui:define name="result">
 			<c:if test="#{not multiCheckboxSelection}">
-				<p:ajax event="rowSelect" listener="#{localitiesLazyDataModel.onRowSelect}" />
+				<p:ajax event="rowSelect" listener="#{localityLazyDataModel.onRowSelect}" />
 			</c:if>
-			<p:column id="localities_postalCode" headerText="#{msg.localities_postalCode}" sortBy="#{item.postalCode}" styleClass="postalCode">
+			<p:column id="locality_postalCode" headerText="#{msg.locality_postalCode}" sortBy="#{item.postalCode}" styleClass="postalCode">
 				#{item.postalCode}
 			</p:column>
-			<p:column id="localities_locality" headerText="#{msg.localities_locality}" sortBy="#{item.locality}" styleClass="locality">
-				#{item.locality}
+			<p:column id="locality_locality2" headerText="#{msg.locality_locality2}" sortBy="#{item.locality2}" styleClass="locality2">
+				#{item.locality2}
 			</p:column>
 			<p:column id="actions" headerText="#{msg.actions}" styleClass="actions-column" resizable="false">
 				<app:iconSelect item="#{item}" />

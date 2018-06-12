@@ -11,32 +11,6 @@ DROP ALL objects;
 
 
 -- =================================
--- TABLE artiste_type 
--- =================================
-
-CREATE TABLE artiste_type (
-	id INTEGER(10) not null,
-	artist_id INTEGER(10) not null,
-	type_id INTEGER(10) not null);
-
-CREATE UNIQUE INDEX IF NOT EXISTS PRIMARY ON artiste_type (id);
-ALTER TABLE artiste_type ALTER COLUMN id IDENTITY;
-
-
--- =================================
--- TABLE artiste_type_shows 
--- =================================
-
-CREATE TABLE artiste_type_shows (
-	id INTEGER(10) not null,
-	cast_member_id INTEGER(10),
-	shows_id INTEGER(10));
-
-CREATE UNIQUE INDEX IF NOT EXISTS PRIMARY ON artiste_type_shows (id);
-ALTER TABLE artiste_type_shows ALTER COLUMN id IDENTITY;
-
-
--- =================================
 -- TABLE artists 
 -- =================================
 
@@ -50,18 +24,32 @@ ALTER TABLE artists ALTER COLUMN id IDENTITY;
 
 
 -- =================================
--- TABLE localities 
+-- TABLE cast_member 
 -- =================================
 
-CREATE TABLE localities (
+CREATE TABLE cast_member (
+	id INTEGER(10) not null,
+	artist_id INTEGER(10) not null,
+	type_id INTEGER(10) not null,
+	show_id INTEGER(10) not null);
+
+CREATE UNIQUE INDEX IF NOT EXISTS PRIMARY ON cast_member (id);
+ALTER TABLE cast_member ALTER COLUMN id IDENTITY;
+
+
+-- =================================
+-- TABLE locality 
+-- =================================
+
+CREATE TABLE locality (
 	id INTEGER(10) not null,
 	postal_code VARCHAR(6) not null,
 	locality VARCHAR(60) not null);
 
-CREATE UNIQUE INDEX IF NOT EXISTS locality ON localities (locality);
-CREATE UNIQUE INDEX IF NOT EXISTS postal_code ON localities (postal_code);
-CREATE UNIQUE INDEX IF NOT EXISTS PRIMARY ON localities (id);
-ALTER TABLE localities ALTER COLUMN id IDENTITY;
+CREATE UNIQUE INDEX IF NOT EXISTS locality ON locality (locality);
+CREATE UNIQUE INDEX IF NOT EXISTS postal_code ON locality (postal_code);
+CREATE UNIQUE INDEX IF NOT EXISTS PRIMARY ON locality (id);
+ALTER TABLE locality ALTER COLUMN id IDENTITY;
 
 
 -- =================================
@@ -169,11 +157,10 @@ CREATE TABLE users (
 CREATE UNIQUE INDEX IF NOT EXISTS PRIMARY ON users (id);
 ALTER TABLE users ALTER COLUMN id IDENTITY;
 
-ALTER TABLE artiste_type ADD CONSTRAINT ARTISTE_TYPE_IBFK_1 FOREIGN KEY (artist_id) REFERENCES artists (id);
-ALTER TABLE artiste_type ADD CONSTRAINT ARTISTE_TYPE_IBFK_2 FOREIGN KEY (type_id) REFERENCES types (id);
-ALTER TABLE artiste_type_shows ADD CONSTRAINT ARTISTE_TYPE_SHOWS_IBFK_1 FOREIGN KEY (shows_id) REFERENCES shows (id);
-ALTER TABLE artiste_type_shows ADD CONSTRAINT ARTISTE_TYPE_SHOWS_IBFK_2 FOREIGN KEY (cast_member_id) REFERENCES artiste_type (id);
-ALTER TABLE locations ADD CONSTRAINT LOCATIONS_IBFK_1 FOREIGN KEY (locality_id) REFERENCES localities (id);
+ALTER TABLE cast_member ADD CONSTRAINT ARTISTE_TYPE_IBFK_1 FOREIGN KEY (artist_id) REFERENCES artists (id);
+ALTER TABLE cast_member ADD CONSTRAINT ARTISTE_TYPE_IBFK_2 FOREIGN KEY (type_id) REFERENCES types (id);
+ALTER TABLE cast_member ADD CONSTRAINT ARTISTE_TYPE_IBFK_3 FOREIGN KEY (show_id) REFERENCES shows (id);
+ALTER TABLE locations ADD CONSTRAINT LOCATIONS_IBFK_1 FOREIGN KEY (locality_id) REFERENCES locality (id);
 ALTER TABLE representation_user ADD CONSTRAINT REPRESENTATION_USER_IBFK_2 FOREIGN KEY (user_id) REFERENCES users (id);
 ALTER TABLE representation_user ADD CONSTRAINT REPRESENTATION_USER_IBFK_1 FOREIGN KEY (representation_id) REFERENCES representations (id);
 ALTER TABLE representations ADD CONSTRAINT REPRESENTATIONS_IBFK_1 FOREIGN KEY (show_id) REFERENCES shows (id);

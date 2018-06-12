@@ -50,7 +50,7 @@ public class Locations implements Identifiable<Integer>, Serializable {
     private String phone;
 
     // Many to one
-    private Localities locality;
+    private Locality locality;
     // -- [id] ------------------------
 
     @Override
@@ -168,24 +168,24 @@ public class Locations implements Identifiable<Integer>, Serializable {
     // -----------------------------------------------------------------
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    // many-to-one: Locations.locality ==> Localities.id
+    // many-to-one: Locations.locality ==> Locality.id
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     @NotNull
     @JoinColumn(name = "locality_id", nullable = false)
     @ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
-    public Localities getLocality() {
+    public Locality getLocality() {
         return locality;
     }
 
     /**
      * Set the {@link #locality} without adding this Locations instance on the passed {@link #locality}
      */
-    public void setLocality(Localities locality) {
+    public void setLocality(Locality locality) {
         this.locality = locality;
     }
 
-    public Locations locality(Localities locality) {
+    public Locations locality(Locality locality) {
         setLocality(locality);
         return this;
     }

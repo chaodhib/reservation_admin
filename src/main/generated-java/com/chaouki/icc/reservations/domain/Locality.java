@@ -30,15 +30,15 @@ import com.google.common.base.Objects;
 import com.jaxio.jpa.querybyexample.Identifiable;
 
 @Entity
-@Table(name = "localities")
-public class Localities implements Identifiable<Integer>, Serializable {
+@Table(name = "locality")
+public class Locality implements Identifiable<Integer>, Serializable {
     private static final long serialVersionUID = 1L;
-    private static final Logger log = LoggerFactory.getLogger(Localities.class);
+    private static final Logger log = LoggerFactory.getLogger(Locality.class);
 
     // Raw attributes
     private Integer id;
     private String postalCode;
-    private String locality;
+    private String locality2;
     // -- [id] ------------------------
 
     @Override
@@ -54,7 +54,7 @@ public class Localities implements Identifiable<Integer>, Serializable {
         this.id = id;
     }
 
-    public Localities id(Integer id) {
+    public Locality id(Integer id) {
         setId(id);
         return this;
     }
@@ -78,32 +78,32 @@ public class Localities implements Identifiable<Integer>, Serializable {
         this.postalCode = postalCode;
     }
 
-    public Localities postalCode(String postalCode) {
+    public Locality postalCode(String postalCode) {
         setPostalCode(postalCode);
         return this;
     }
-    // -- [locality] ------------------------
+    // -- [locality2] ------------------------
 
     @NotEmpty
     @Size(max = 60)
     @Column(name = "locality", nullable = false, unique = true, length = 60)
-    public String getLocality() {
-        return locality;
+    public String getLocality2() {
+        return locality2;
     }
 
-    public void setLocality(String locality) {
-        this.locality = locality;
+    public void setLocality2(String locality2) {
+        this.locality2 = locality2;
     }
 
-    public Localities locality(String locality) {
-        setLocality(locality);
+    public Locality locality2(String locality2) {
+        setLocality2(locality2);
         return this;
     }
 
     /**
      * Apply the default values.
      */
-    public Localities withDefaults() {
+    public Locality withDefaults() {
         return this;
     }
 
@@ -112,14 +112,14 @@ public class Localities implements Identifiable<Integer>, Serializable {
      */
     @Override
     public boolean equals(Object other) {
-        return this == other || (other instanceof Localities && hashCode() == other.hashCode());
+        return this == other || (other instanceof Locality && hashCode() == other.hashCode());
     }
 
     private volatile int previousHashCode = 0;
 
     @Override
     public int hashCode() {
-        int hashCode = Objects.hashCode(getLocality());
+        int hashCode = Objects.hashCode(getLocality2());
 
         if (previousHashCode != 0 && previousHashCode != hashCode) {
             log.warn("DEVELOPER: hashCode has changed!." //
@@ -132,7 +132,7 @@ public class Localities implements Identifiable<Integer>, Serializable {
     }
 
     /**
-     * Construct a readable string representation for this Localities instance.
+     * Construct a readable string representation for this Locality instance.
      * @see java.lang.Object#toString()
      */
     @Override
@@ -140,7 +140,7 @@ public class Localities implements Identifiable<Integer>, Serializable {
         return MoreObjects.toStringHelper(this) //
                 .add("id", getId()) //
                 .add("postalCode", getPostalCode()) //
-                .add("locality", getLocality()) //
+                .add("locality2", getLocality2()) //
                 .toString();
     }
 }

@@ -19,7 +19,8 @@
 		]]></description>
 		<mapping-file>META-INF/spring-orm.xml</mapping-file>
 		<class>com.chaouki.icc.reservations.domain.Artists</class>
-		<class>com.chaouki.icc.reservations.domain.Localities</class>
+		<class>com.chaouki.icc.reservations.domain.CastMember</class>
+		<class>com.chaouki.icc.reservations.domain.Locality</class>
 		<class>com.chaouki.icc.reservations.domain.Locations</class>
 		<class>com.chaouki.icc.reservations.domain.RepresentationUser</class>
 		<class>com.chaouki.icc.reservations.domain.Representations</class>

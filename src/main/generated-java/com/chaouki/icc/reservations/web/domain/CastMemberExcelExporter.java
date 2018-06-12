@@ -11,35 +11,34 @@ package com.chaouki.icc.reservations.web.domain;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.chaouki.icc.reservations.domain.Artists;
+import com.chaouki.icc.reservations.domain.CastMember;
 import com.chaouki.icc.reservations.web.domain.support.GenericExcelExporter;
 import com.chaouki.icc.reservations.web.faces.ConversationContextScoped;
 
 /**
- * Exports to excel document {@link Artists} search criteria and result. 
+ * Exports to excel document {@link CastMember} search criteria and result. 
  */
 @Named
 @ConversationContextScoped
-public class ArtistsExcelExporter extends GenericExcelExporter<Artists> {
+public class CastMemberExcelExporter extends GenericExcelExporter<CastMember> {
     @Inject
-    protected ArtistsSearchForm sf;
+    protected CastMemberSearchForm sf;
 
-    public ArtistsExcelExporter() {
-        super("artists_firstname", "artists_lastname");
+    public CastMemberExcelExporter() {
+        super();
     }
 
     @Override
-    protected void fillResultItem(int row, Artists item) {
+    protected void fillResultItem(int row, CastMember item) {
         int col = 0;
-        setValue(row, col++, item.getFirstname());
-        setValue(row, col++, item.getLastname());
     }
 
     @Override
     public void fillSearchCriteria(int row) {
         useCriteriaSheet();
 
-        setSelector(row++, 0, "artists_firstname", sf.getFirstnameSelector());
-        setSelector(row++, 0, "artists_lastname", sf.getLastnameSelector());
+        setSelectedEntities(row++, 0, "castMember_artist", sf.getArtistSelector().getSelected());
+        setSelectedEntities(row++, 0, "castMember_type", sf.getTypeSelector().getSelected());
+        setSelectedEntities(row++, 0, "castMember_show", sf.getShowSelector().getSelected());
     }
 }
