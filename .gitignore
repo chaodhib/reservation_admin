@@ -1,3 +1,4 @@
 .idea/
 reservations_admin.iml
 target/
+.celerio/generated.xml
