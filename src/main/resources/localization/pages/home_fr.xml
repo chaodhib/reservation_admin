@@ -25,8 +25,8 @@
 		<a href="http://www.jaxio.com/nous-contacter.html" target="_jaxio">Contactez-nous...</a></p>
 	]]></entry>
 	<entry key="home_please_connect_first">Connectez-vous afin d'accéder au contenu.</entry>
-	<entry key="home_start_conversation">Démarrer une nouvelle conversation</entry>
-	<entry key="home_conversation">Voici la liste des conversations générées:</entry>
+	<entry key="home_start_conversation">Administration</entry>
+	<entry key="home_conversation">Voici la liste des entités que vous pouvez modifier et parcourir:</entry>
 	<entry key="home_conversation_search">Liste</entry>
 	<entry key="home_conversation_create">Créer</entry>
 	<entry key="home_configuration">Configurer la génération</entry>

@@ -25,8 +25,8 @@
 		<a href="http://www.jaxio.com/en/contact-us.html" target="_jaxio">please contact us...</a></p>
 	]]></entry>
 	<entry key="home_please_connect_first">Please login first in order to access the application content.</entry>
-	<entry key="home_start_conversation">Start a new conversation</entry>
-	<entry key="home_conversation">Here is the list of generated conversations:</entry>
+	<entry key="home_start_conversation">Administration</entry>
+	<entry key="home_conversation">Here is the list of the entities you can edit and search through:</entry>
 	<entry key="home_conversation_search">Search</entry>
 	<entry key="home_conversation_create">Create</entry>
 	<entry key="home_configuration">Fine tuning code generation</entry>

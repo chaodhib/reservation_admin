@@ -16,9 +16,6 @@
 	xmlns:appcc="http://xmlns.jcp.org/jsf/composite/components"
 	template="/WEB-INF/layouts/main.xhtml">
 	<ui:define name="content">
-		<p:panel header="#{msg.home_about}">
-			<h:outputText value="#{msg.home_generated_by}" escape="false"/>
-		</p:panel>
 		<p:panel header="#{msg.welcome}">
 			<p>
 				<h:outputFormat value="#{msg.you_are_connected_to}" rendered="#{userContextService.isLoggedIn()}">
@@ -39,7 +36,7 @@
 			</script>
 		</p:panel>
 
-		<p:panel header="#{msg.home_start_conversation}">
+		<p:panel header="#{msg.home_start_conversation}" rendered="#{userContextService.hasRole('ROLE_ADMIN')}">
 			<p>#{msg.home_conversation}</p>
 			<ul>
 				<li>
@@ -143,9 +140,6 @@
 					</h:commandLink>
 				</li>
 			</ul>
-		</p:panel>
-		<p:panel header="#{msg.home_configuration}">
-			<h:outputText value="#{msg.home_configuration_howto}" escape="false" />
 		</p:panel>
 	</ui:define>
 </ui:composition>
