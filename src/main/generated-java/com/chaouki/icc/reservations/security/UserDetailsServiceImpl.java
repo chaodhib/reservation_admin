@@ -9,13 +9,23 @@
 package com.chaouki.icc.reservations.security;
 
 import static com.google.common.collect.Lists.newArrayList;
+import static com.jaxio.jpa.querybyexample.PropertySelector.newPropertySelector;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import com.chaouki.icc.reservations.domain.Locality_;
+import com.chaouki.icc.reservations.domain.Roles_;
+import com.chaouki.icc.reservations.domain.Users;
+import com.chaouki.icc.reservations.domain.Users_;
+import com.chaouki.icc.reservations.repository.RolesRepository;
+import com.chaouki.icc.reservations.repository.UsersRepository;
+import com.jaxio.jpa.querybyexample.SearchParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,6 +33,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.chaouki.icc.reservations.context.UserWithId;
@@ -38,48 +49,24 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private static final Logger log = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
-    /**
-     * Retrieve an account depending on its login this method is not case sensitive.
-     *
-     * @param username the user's username
-     * @return a Spring Security userdetails object that matches the username
-     * @throws UsernameNotFoundException when the user could not be found
-     * @throws DataAccessException when an error occurred while retrieving the account
-     */
-    @Transactional(readOnly = true)
+    @Inject
+    private UsersRepository usersRepository;
+
     @Override
-    public UserDetails loadUserByUsername(String username) {
-        if (username == null || username.trim().isEmpty()) {
-            throw new UsernameNotFoundException("Empty username");
-        }
-        log.debug("Security verification for user '{}'", username);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        SearchParameters searchParameters = new SearchParameters();
+        searchParameters.property(newPropertySelector(Users_.login).selected(username));
+        List<Users> matches = usersRepository.find(searchParameters);
+        if(matches.isEmpty())
+            return null;
+        else if(matches.size() > 1)
+            throw new IllegalStateException("more than one user with the same 'username'");
 
-        if ("user".equals(username)) {
-            String password = "user";
-            boolean enabled = true;
-            boolean accountNonExpired = true;
-            boolean credentialsNonExpired = true;
-            boolean accountNonLocked = true;
-            List<String> roles = newArrayList("ROLE_USER");
-            return new UserWithId(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, toGrantedAuthorities(roles), null);
-        }
-        if ("admin".equals(username)) {
-            String password = "admin";
-            boolean enabled = true;
-            boolean accountNonExpired = true;
-            boolean credentialsNonExpired = true;
-            boolean accountNonLocked = true;
-            List<String> roles = newArrayList("ROLE_ADMIN");
-            return new UserWithId(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, toGrantedAuthorities(roles), null);
-        }
-        return null;
-    }
+        Users users = matches.get(0);
 
-    private Collection<GrantedAuthority> toGrantedAuthorities(List<String> roles) {
-        List<GrantedAuthority> result = newArrayList();
-        for (String role : roles) {
-            result.add(new SimpleGrantedAuthority(role));
-        }
-        return result;
+        if(!"admin".equals(users.getRole().getRole()))
+            return null;
+
+        return new UserWithId(users.getLogin(), users.getPassword(), true, true, true, true, Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN")), users.getId());
     }
 }

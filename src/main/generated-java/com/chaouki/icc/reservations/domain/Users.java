@@ -10,6 +10,7 @@ package com.chaouki.icc.reservations.domain;
 
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -193,7 +194,7 @@ public class Users implements Identifiable<Integer>, Serializable {
 
     @NotNull
     @JoinColumn(name = "role_id", nullable = false)
-    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
+    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = EAGER)
     public Roles getRole() {
         return role;
     }

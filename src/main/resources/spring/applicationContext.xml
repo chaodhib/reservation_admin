@@ -34,7 +34,7 @@
 
 	<!-- security -->
 	<security:authentication-manager>
-		<security:authentication-provider user-service-ref="userDetailsService" />
+		<security:authentication-provider ref="authProvider" />
 	</security:authentication-manager>
 	<security:global-method-security jsr250-annotations="enabled" pre-post-annotations="enabled" />
 
@@ -65,5 +65,12 @@
 			Simple datasource. This is a direct access to the datasource that can be used for specific queries that need to bypass JPA functionalities.
 			However, if you need to use JDBC, please look at hibernate SQL-QUERIES, they would most probably be a more elegant way to solve your problem.
 		]]></description>
+	</bean>
+
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+	<bean id="authProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="userDetailsService" />
+		<property name="passwordEncoder" ref="passwordEncoder" />
 	</bean>
 </beans>
