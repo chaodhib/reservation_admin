@@ -25,6 +25,7 @@
 				controller="#{locationsController}" permission="#{locationsPermission}"/>
 			<app:selectManyBoolean id="bookable" value="#{showsSearchForm.bookableSelector}" label="shows_bookable" />
 			<app:rangeDouble id="price" value="#{showsSearchForm.priceRange}" label="shows_price" />
+			<app:rangeInt id="extId" value="#{showsSearchForm.extIdRange}" label="shows_extId"/>
 		</ui:define>
 		<ui:define name="result">
 			<c:if test="#{not multiCheckboxSelection}">
@@ -44,6 +45,9 @@
 			</p:column>
 			<p:column id="shows_price" headerText="#{msg.shows_price}" sortBy="#{item.price}" styleClass="price numeric">
 				<app:outputDecimal value="#{item.price}" />
+			</p:column>
+			<p:column id="shows_extId" headerText="#{msg.shows_extId}" sortBy="#{item.extId}" styleClass="extId numeric">
+				<app:outputInteger value="#{item.extId}" />
 			</p:column>
 			<p:column id="actions" headerText="#{msg.actions}" styleClass="actions-column" resizable="false">
 				<app:iconSelect item="#{item}" />

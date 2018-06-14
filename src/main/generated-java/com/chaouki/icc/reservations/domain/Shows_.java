@@ -21,6 +21,7 @@ public abstract class Shows_ {
     public static volatile SingularAttribute<Shows, String> posterUrl;
     public static volatile SingularAttribute<Shows, Boolean> bookable;
     public static volatile SingularAttribute<Shows, Double> price;
+    public static volatile SingularAttribute<Shows, Integer> extId;
 
     // Many to one
     public static volatile SingularAttribute<Shows, Locations> location;

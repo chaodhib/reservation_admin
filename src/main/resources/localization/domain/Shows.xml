@@ -25,6 +25,7 @@
 	<entry key="shows_locationId">Location Id</entry>
 	<entry key="shows_bookable">Bookable</entry>
 	<entry key="shows_price">Price</entry>
+	<entry key="shows_extId">Ext Id</entry>
 
 	<!-- x-to-one -->
 	<entry key="shows_location">Location</entry>

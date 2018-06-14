@@ -32,11 +32,13 @@ public class ShowsSearchForm extends GenericSearchForm<Shows, Integer, ShowsSear
     private static final long serialVersionUID = 1L;
     protected Shows shows = new Shows();
     protected Range<Shows, Double> priceRange = newRange(Shows_.price);
+    protected Range<Shows, Integer> extIdRange = newRange(Shows_.extId);
     protected PropertySelector<Shows, String> slugSelector = newPropertySelector(Shows_.slug);
     protected PropertySelector<Shows, String> titleSelector = newPropertySelector(Shows_.title);
     protected PropertySelector<Shows, String> posterUrlSelector = newPropertySelector(Shows_.posterUrl);
     protected PropertySelector<Shows, Boolean> bookableSelector = newPropertySelector(Shows_.bookable);
     protected PropertySelector<Shows, Double> priceSelector = newPropertySelector(Shows_.price);
+    protected PropertySelector<Shows, Integer> extIdSelector = newPropertySelector(Shows_.extId);
     protected PropertySelector<Shows, Locations> locationSelector = newPropertySelector(Shows_.location);
 
     public Shows getShows() {
@@ -56,8 +58,8 @@ public class ShowsSearchForm extends GenericSearchForm<Shows, Integer, ShowsSear
     @Override
     public SearchParameters toSearchParameters() {
         SearchParameters sp = searchParameters();
-        sp.range(priceRange);
-        sp.property(slugSelector, titleSelector, posterUrlSelector, bookableSelector, priceSelector);
+        sp.range(priceRange, extIdRange);
+        sp.property(slugSelector, titleSelector, posterUrlSelector, bookableSelector, priceSelector, extIdSelector);
         sp.property(locationSelector);
         return sp;
     }
@@ -66,17 +68,23 @@ public class ShowsSearchForm extends GenericSearchForm<Shows, Integer, ShowsSear
     public void resetWithOther(ShowsSearchForm other) {
         this.shows = other.getShows();
         this.priceRange = other.getPriceRange();
+        this.extIdRange = other.getExtIdRange();
         this.slugSelector = other.getSlugSelector();
         this.titleSelector = other.getTitleSelector();
         this.posterUrlSelector = other.getPosterUrlSelector();
         this.bookableSelector = other.getBookableSelector();
         this.priceSelector = other.getPriceSelector();
+        this.extIdSelector = other.getExtIdSelector();
         this.locationSelector = other.getLocationSelector();
     }
 
     // Ranges
     public Range<Shows, Double> getPriceRange() {
         return priceRange;
+    }
+
+    public Range<Shows, Integer> getExtIdRange() {
+        return extIdRange;
     }
 
     // Property selectors
@@ -98,6 +106,10 @@ public class ShowsSearchForm extends GenericSearchForm<Shows, Integer, ShowsSear
 
     public PropertySelector<Shows, Double> getPriceSelector() {
         return priceSelector;
+    }
+
+    public PropertySelector<Shows, Integer> getExtIdSelector() {
+        return extIdSelector;
     }
 
     // Relation selectors
