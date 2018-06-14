@@ -14,13 +14,11 @@ public class ShowDataModel extends ListDataModel<Shows> implements SelectableDat
 
     @Override
     public Object getRowKey(Shows shows) {
-        System.out.println("getRowKey: " + shows.getSlug());
         return shows.getSlug();
     }
 
     @Override
     public Shows getRowData(String rowKey) {
-        System.out.println("getRowData: " +rowKey);
         List<Shows> shows = (List<Shows>) getWrappedData();
 
         for(Shows show : shows) {

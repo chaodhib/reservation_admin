@@ -68,7 +68,7 @@ public class SpectacleProviderGatewayImpl implements SpectacleProviderGateway {
             shows.setLocation(mapLocation(venueInfoMap.get(eventInfo.getVenueId())));
             shows.setSlug(Integer.toString(eventInfo.getEventId()));
             shows.setBookable(true);
-            shows.setPosterUrl(eventInfo.getMainImageUrl() != null ? eventInfo.getMainImageUrl() : "http://localhost");
+            shows.setPosterUrl(StringUtils.isNotBlank(eventInfo.getMainImageUrl()) ? eventInfo.getMainImageUrl() : "http://localhost");
             shows.setPrice(eventInfo.getCurrentPrice().doubleValue());
 
             showsList.add(shows);
@@ -80,15 +80,16 @@ public class SpectacleProviderGatewayImpl implements SpectacleProviderGateway {
         Locations locations = new Locations();
 
         Locality locality = new Locality();
-        locality.setLocality2(venueInfo.City != null ? venueInfo.City : "Not mentioned");
-        locality.setPostalCode(venueInfo.Postcode != null ? StringUtils.left(venueInfo.Postcode, 6) : "UNK");
+        String postalCode = StringUtils.isNotBlank(venueInfo.Postcode) ? venueInfo.Postcode : "UNK";
+        locality.setPostalCode(postalCode);
+        locality.setLocality2(StringUtils.isNotBlank(venueInfo.City) && StringUtils.isNotBlank(venueInfo.Postcode) ? venueInfo.City + " " + postalCode : "Not mentioned"); // we only have the city from this API. not the locality. we could infer the locality from the postalCode but I haven't done it yet.
         locations.setLocality(locality);
 
-        locations.setAddress(venueInfo.Address != null ? venueInfo.Address : "Not mentioned");
-        locations.setDesignation(venueInfo.Name != null ? venueInfo.Name : "Not mentioned");
-        locations.setPhone(venueInfo.Telephone != null ? StringUtils.left(venueInfo.Telephone, 30) : "Not mentioned");
+        locations.setAddress(StringUtils.isNotBlank(venueInfo.Address) ? venueInfo.Address : "Not mentioned");
+        locations.setDesignation(StringUtils.isNotBlank(venueInfo.Name) ? venueInfo.Name : "Not mentioned");
+        locations.setPhone(StringUtils.isNotBlank(venueInfo.Telephone) ? StringUtils.left(venueInfo.Telephone, 30) : "Not mentioned");
         locations.setSlug(Integer.toString(venueInfo.VenueId));
-        locations.setWebsite("https//locallhost");
+        locations.setWebsite("https//localhost");
 
         return locations;
     }

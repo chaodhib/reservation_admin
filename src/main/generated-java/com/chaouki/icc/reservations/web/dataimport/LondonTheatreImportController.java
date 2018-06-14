@@ -13,6 +13,8 @@ import com.chaouki.icc.reservations.service.ShowService;
 import com.chaouki.icc.reservations.service.SpectacleProviderGateway;
 import com.chaouki.icc.reservations.web.faces.ViewScoped;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -37,8 +39,10 @@ public class LondonTheatreImportController implements Serializable {
     }
 
     public void importData() {
-        System.out.println("Import data called. size: " + selectedShows.size());
         showService.importShows(selectedShows);
+
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Successful",  "The import has finished succesfully") );
     }
 
     public ShowDataModel getShows() {

@@ -1,9 +1,11 @@
 package com.chaouki.icc.reservations.service;
 
 import com.chaouki.icc.reservations.domain.Locality;
+import com.chaouki.icc.reservations.domain.Locations;
 import com.chaouki.icc.reservations.domain.Shows;
 import com.chaouki.icc.reservations.domain.Shows_;
 import com.chaouki.icc.reservations.repository.LocalityRepository;
+import com.chaouki.icc.reservations.repository.LocationsRepository;
 import com.chaouki.icc.reservations.repository.ShowsRepository;
 import com.jaxio.jpa.querybyexample.SearchParameters;
 import org.apache.commons.lang.StringUtils;
@@ -28,8 +30,8 @@ public class ShowServiceImpl implements ShowService {
     @Inject
     private LocalityRepository localityRepository;
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    @Inject
+    private LocationsRepository locationsRepository;
 
     @Override
     @Transactional
@@ -63,24 +65,36 @@ public class ShowServiceImpl implements ShowService {
 //
 //        Integer id = savedShows.get(0).getId();
 //        newShow.setId(id);
-//        mergeLocality(newShow);
+//        fetchOrSaveLocality(newShow);
 //        showsRepository.merge(newShow);
 //    }
 
     private void addShow(Shows shows) {
-        mergeLocality(shows);
+        fetchOrSaveLocality(shows);
+        fetchOrSaveLocation(shows);
         showsRepository.persist(shows);
     }
 
-    private void mergeLocality(Shows shows) {
-        Locality newLocality = shows.getLocation().getLocality();
-        Locality savedLocality = localityRepository.getByPostalCode(StringUtils.left(newLocality.getPostalCode(), 6));
+    private void fetchOrSaveLocality(Shows shows) {
+        Locality savedLocality = localityRepository.getByPostalCode(shows.getLocation().getLocality().getPostalCode());
         if(savedLocality == null) {
-            newLocality.setPostalCode(StringUtils.left(newLocality.getPostalCode(), 6)); // truncate to 6 characters
+            Locality newLocality = shows.getLocation().getLocality();
+            newLocality.setPostalCode(newLocality.getPostalCode());
             localityRepository.save(newLocality);
             savedLocality = newLocality;
         }
 
         shows.getLocation().setLocality(savedLocality);
+    }
+
+    private void fetchOrSaveLocation(Shows shows) {
+        Locations savedLocation = locationsRepository.getBySlug(shows.getLocation().getSlug());
+        if(savedLocation == null) {
+            Locations newLocation = shows.getLocation();
+            locationsRepository.save(newLocation);
+            savedLocation = newLocation;
+        }
+
+        shows.setLocation(savedLocation);
     }
 }
