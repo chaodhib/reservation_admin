@@ -68,6 +68,7 @@ public class SpectacleProviderGatewayImpl implements SpectacleProviderGateway {
             shows.setBookable(true);
             shows.setPosterUrl(eventInfo.getMainImageUrl());
             shows.setPrice(eventInfo.getCurrentPrice().doubleValue());
+            shows.setExtId(eventInfo.getEventId());
 
             showsList.add(shows);
         }
