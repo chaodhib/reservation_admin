@@ -157,5 +157,11 @@
 				<h:outputText value="#{msg.home_london_theatre_import}"/>
 			</h:commandLink>
 		</p:panel>
+
+		<p:panel header="Category administration" rendered="#{userContextService.hasRole('ROLE_ADMIN')}">
+			<h:commandLink action="/category/showAllCategories" ajax="false" immediate="true">
+				<h:outputText value="Show all categories and the shows linked to them"/>
+			</h:commandLink>
+		</p:panel>
 	</ui:define>
 </ui:composition>

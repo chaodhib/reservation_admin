@@ -41,6 +41,9 @@
 			<p:column id="shows_posterUrl" headerText="#{msg.shows_posterUrl}" sortBy="#{item.posterUrl}" styleClass="posterUrl">
 				#{item.posterUrl}
 			</p:column>
+			<p:column id="shows_category" headerText="#{msg.shows_category}" sortBy="#{item.category.name}" styleClass="category">
+				#{item.category.name}
+			</p:column>
 			<p:column id="shows_bookable" headerText="#{msg.shows_bookable}" sortBy="#{item.bookable}" styleClass="bookable">
 				<appcc:outputBoolean value="#{item.bookable}" />
 			</p:column>

@@ -10,6 +10,7 @@ package com.chaouki.icc.reservations.domain;
 
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -178,7 +179,7 @@ public class Shows implements Identifiable<Integer>, Serializable {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     @JoinColumn(name = "category_id")
-    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
+    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = EAGER)
     public Category getCategory() {
         return category;
     }
