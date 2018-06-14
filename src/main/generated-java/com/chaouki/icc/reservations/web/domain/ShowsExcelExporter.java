@@ -25,7 +25,7 @@ public class ShowsExcelExporter extends GenericExcelExporter<Shows> {
     protected ShowsSearchForm sf;
 
     public ShowsExcelExporter() {
-        super("shows_slug", "shows_title", "shows_posterUrl", "shows_bookable", "shows_price", "shows_extId");
+        super("shows_slug", "shows_title", "shows_posterUrl", "shows_bookable", "shows_price");
     }
 
     @Override
@@ -36,7 +36,6 @@ public class ShowsExcelExporter extends GenericExcelExporter<Shows> {
         setValue(row, col++, item.getPosterUrl());
         setValue(row, col++, item.getBookable());
         setValue(row, col++, item.getPrice());
-        setValue(row, col++, item.getExtId());
     }
 
     @Override
@@ -49,6 +48,5 @@ public class ShowsExcelExporter extends GenericExcelExporter<Shows> {
         setSelectedEntities(row++, 0, "shows_location", sf.getLocationSelector().getSelected());
         setSelector(row++, 0, "shows_bookable", sf.getBookableSelector());
         setRangeNumber(row++, 0, "shows_price", sf.getPriceRange());
-        setRangeNumber(row++, 0, "shows_extId", sf.getExtIdRange());
     }
 }

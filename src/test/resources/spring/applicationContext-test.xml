@@ -20,7 +20,7 @@
 	<context:component-scan base-package="com.chaouki.icc.reservations.web" />
     
     <!-- Fresh H2 is used for tests. If you want to use the dev database, comment it out -->
-	<jdbc:embedded-database id="dataSource" type="H2">
-		<jdbc:script location="file:./src/main/sql/h2/*.sql" />
-	</jdbc:embedded-database>
+	<!--<jdbc:embedded-database id="dataSource" type="H2">-->
+		<!--<jdbc:script location="file:./src/main/sql/h2/*.sql" />-->
+	<!--</jdbc:embedded-database>-->
 </beans>

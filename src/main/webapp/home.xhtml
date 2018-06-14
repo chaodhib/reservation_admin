@@ -141,5 +141,11 @@
 				</li>
 			</ul>
 		</p:panel>
+
+		<p:panel header="#{msg.home_london_theatre_import_title}" rendered="#{userContextService.hasRole('ROLE_ADMIN')}">
+			<h:commandLink action="/londonTheatreImport/import" ajax="false" immediate="true">
+				<h:outputText value="#{msg.home_london_theatre_import}"/>
+			</h:commandLink>
+		</p:panel>
 	</ui:define>
 </ui:composition>

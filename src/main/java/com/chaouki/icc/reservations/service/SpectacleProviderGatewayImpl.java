@@ -7,6 +7,8 @@ import com.chaouki.icc.reservations.dto.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.apache.commons.lang.StringUtils;
+import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
@@ -64,11 +66,10 @@ public class SpectacleProviderGatewayImpl implements SpectacleProviderGateway {
             Shows shows = new Shows();
             shows.setTitle(eventInfo.getName());
             shows.setLocation(mapLocation(venueInfoMap.get(eventInfo.getVenueId())));
-            shows.setSlug(eventInfo.getTagLine());
+            shows.setSlug(Integer.toString(eventInfo.getEventId()));
             shows.setBookable(true);
-            shows.setPosterUrl(eventInfo.getMainImageUrl());
+            shows.setPosterUrl(eventInfo.getMainImageUrl() != null ? eventInfo.getMainImageUrl() : "http://localhost");
             shows.setPrice(eventInfo.getCurrentPrice().doubleValue());
-            shows.setExtId(eventInfo.getEventId());
 
             showsList.add(shows);
         }
@@ -79,13 +80,15 @@ public class SpectacleProviderGatewayImpl implements SpectacleProviderGateway {
         Locations locations = new Locations();
 
         Locality locality = new Locality();
-        locality.setLocality2(venueInfo.City);
-        locality.setPostalCode(venueInfo.Postcode);
+        locality.setLocality2(venueInfo.City != null ? venueInfo.City : "Not mentioned");
+        locality.setPostalCode(venueInfo.Postcode != null ? StringUtils.left(venueInfo.Postcode, 6) : "UNK");
         locations.setLocality(locality);
 
-        locations.setAddress(venueInfo.Address);
-        locations.setDesignation(venueInfo.Name);
-        locations.setPhone(venueInfo.Telephone);
+        locations.setAddress(venueInfo.Address != null ? venueInfo.Address : "Not mentioned");
+        locations.setDesignation(venueInfo.Name != null ? venueInfo.Name : "Not mentioned");
+        locations.setPhone(venueInfo.Telephone != null ? StringUtils.left(venueInfo.Telephone, 30) : "Not mentioned");
+        locations.setSlug(Integer.toString(venueInfo.VenueId));
+        locations.setWebsite("https//locallhost");
 
         return locations;
     }

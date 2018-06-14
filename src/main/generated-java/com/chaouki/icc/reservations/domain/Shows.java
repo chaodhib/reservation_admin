@@ -50,7 +50,6 @@ public class Shows implements Identifiable<Integer>, Serializable {
     private String posterUrl;
     private Boolean bookable;
     private Double price;
-    private Integer extId;
 
     // Many to one
     private Locations location;
@@ -168,22 +167,6 @@ public class Shows implements Identifiable<Integer>, Serializable {
         setPrice(price);
         return this;
     }
-    // -- [extId] ------------------------
-
-    @Digits(integer = 10, fraction = 0)
-    @Column(name = "extId", precision = 10)
-    public Integer getExtId() {
-        return extId;
-    }
-
-    public void setExtId(Integer extId) {
-        this.extId = extId;
-    }
-
-    public Shows extId(Integer extId) {
-        setExtId(extId);
-        return this;
-    }
 
     // -----------------------------------------------------------------
     // Many to One support
@@ -195,7 +178,7 @@ public class Shows implements Identifiable<Integer>, Serializable {
 
     @NotNull
     @JoinColumn(name = "location_id", nullable = false)
-    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
+    @ManyToOne(fetch = LAZY)
     public Locations getLocation() {
         return location;
     }
@@ -256,7 +239,6 @@ public class Shows implements Identifiable<Integer>, Serializable {
                 .add("posterUrl", getPosterUrl()) //
                 .add("bookable", getBookable()) //
                 .add("price", getPrice()) //
-                .add("extId", getExtId()) //
                 .toString();
     }
 }

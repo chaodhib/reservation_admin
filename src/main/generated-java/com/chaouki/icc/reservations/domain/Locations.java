@@ -173,7 +173,7 @@ public class Locations implements Identifiable<Integer>, Serializable {
 
     @NotNull
     @JoinColumn(name = "locality_id", nullable = false)
-    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
+    @ManyToOne(fetch = LAZY)
     public Locality getLocality() {
         return locality;
     }

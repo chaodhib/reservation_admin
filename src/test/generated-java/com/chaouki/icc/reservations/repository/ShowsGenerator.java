@@ -36,7 +36,6 @@ public class ShowsGenerator {
         shows.setPosterUrl("http://www.jaxio.com");
         shows.setBookable(true);
         shows.setPrice(1d);
-        shows.setExtId(1);
         // mandatory relation
         Locations location = locationsGenerator.getLocations();
         locationsRepository.save(location);
