@@ -31,6 +31,13 @@
 		</app:autoComplete>
 		<app:inputBoolean id="bookable" value="#{showsEditForm.shows.bookable}" label="shows_bookable" required="true" />
 		<app:input id="price" value="#{showsEditForm.shows.price}" label="shows_price" size="10" required="true" />
+		<app:autoComplete id="category" value="#{showsEditForm.category.selected}" label="shows_category" title="shows_category" required="false" 
+			model="#{showsEditForm.category}" controller="#{categoryController}" permission="#{categoryPermission}">
+			<app:iconSearch id="selectCategory" />
+			<app:iconAdd id="addCategory" />
+			<app:iconEdit item="#{showsEditForm.shows.category}" />
+			<app:iconView item="#{showsEditForm.shows.category}" />
+		</app:autoComplete>
 	</ui:define>
 </app:edit>
 </ui:composition>

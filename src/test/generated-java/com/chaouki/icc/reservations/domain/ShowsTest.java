@@ -39,8 +39,27 @@ public class ShowsTest {
     }
 
     //-------------------------------------------------------------
-    // Many to One:  Shows.location ==> Locations.id
+    // Many to One:  Shows.category ==> Category.id
     //-------------------------------------------------------------
+
+    @Test
+    public void manyToOne_setCategory() {
+        Shows many = new Shows();
+
+        // init
+        Category one = new Category();
+        one.setId(ValueGenerator.getUniqueInteger());
+        many.setCategory(one);
+
+        // make sure it is propagated properly
+        assertThat(many.getCategory()).isEqualTo(one);
+
+        // now set it to back to null
+        many.setCategory(null);
+
+        // make sure null is propagated properly
+        assertThat(many.getCategory()).isNull();
+    }
 
     @Test
     public void manyToOne_setLocation() {

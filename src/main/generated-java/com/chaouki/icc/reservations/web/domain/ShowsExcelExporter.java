@@ -48,5 +48,6 @@ public class ShowsExcelExporter extends GenericExcelExporter<Shows> {
         setSelectedEntities(row++, 0, "shows_location", sf.getLocationSelector().getSelected());
         setSelector(row++, 0, "shows_bookable", sf.getBookableSelector());
         setRangeNumber(row++, 0, "shows_price", sf.getPriceRange());
+        setSelectedEntities(row++, 0, "shows_category", sf.getCategorySelector().getSelected());
     }
 }

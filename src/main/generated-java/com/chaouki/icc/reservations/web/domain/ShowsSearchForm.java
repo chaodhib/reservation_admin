@@ -13,6 +13,7 @@ import static com.jaxio.jpa.querybyexample.Range.newRange;
 
 import javax.inject.Named;
 
+import com.chaouki.icc.reservations.domain.Category;
 import com.chaouki.icc.reservations.domain.Locations;
 import com.chaouki.icc.reservations.domain.Shows;
 import com.chaouki.icc.reservations.domain.Shows_;
@@ -37,6 +38,7 @@ public class ShowsSearchForm extends GenericSearchForm<Shows, Integer, ShowsSear
     protected PropertySelector<Shows, String> posterUrlSelector = newPropertySelector(Shows_.posterUrl);
     protected PropertySelector<Shows, Boolean> bookableSelector = newPropertySelector(Shows_.bookable);
     protected PropertySelector<Shows, Double> priceSelector = newPropertySelector(Shows_.price);
+    protected PropertySelector<Shows, Category> categorySelector = newPropertySelector(Shows_.category);
     protected PropertySelector<Shows, Locations> locationSelector = newPropertySelector(Shows_.location);
 
     public Shows getShows() {
@@ -58,7 +60,7 @@ public class ShowsSearchForm extends GenericSearchForm<Shows, Integer, ShowsSear
         SearchParameters sp = searchParameters();
         sp.range(priceRange);
         sp.property(slugSelector, titleSelector, posterUrlSelector, bookableSelector, priceSelector);
-        sp.property(locationSelector);
+        sp.property(categorySelector, locationSelector);
         return sp;
     }
 
@@ -71,6 +73,7 @@ public class ShowsSearchForm extends GenericSearchForm<Shows, Integer, ShowsSear
         this.posterUrlSelector = other.getPosterUrlSelector();
         this.bookableSelector = other.getBookableSelector();
         this.priceSelector = other.getPriceSelector();
+        this.categorySelector = other.getCategorySelector();
         this.locationSelector = other.getLocationSelector();
     }
 
@@ -101,6 +104,10 @@ public class ShowsSearchForm extends GenericSearchForm<Shows, Integer, ShowsSear
     }
 
     // Relation selectors
+    public PropertySelector<Shows, Category> getCategorySelector() {
+        return categorySelector;
+    }
+
     public PropertySelector<Shows, Locations> getLocationSelector() {
         return locationSelector;
     }

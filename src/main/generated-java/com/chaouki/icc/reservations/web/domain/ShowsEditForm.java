@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 
+import com.chaouki.icc.reservations.domain.Category;
 import com.chaouki.icc.reservations.domain.Locations;
 import com.chaouki.icc.reservations.domain.Shows;
 import com.chaouki.icc.reservations.domain.Shows_;
@@ -29,6 +30,9 @@ import com.chaouki.icc.reservations.web.faces.ConversationContextScoped;
 public class ShowsEditForm extends GenericEditForm<Shows, Integer> {
     @Inject
     protected ShowsController showsController;
+    @Inject
+    protected CategoryController categoryController;
+    protected GenericToOneAssociation<Category, Integer> category;
     @Inject
     protected LocationsController locationsController;
     protected GenericToOneAssociation<Locations, Integer> location;
@@ -47,6 +51,25 @@ public class ShowsEditForm extends GenericEditForm<Shows, Integer> {
 
     public String print() {
         return showsController.print(getShows());
+    }
+
+    @PostConstruct
+    void setupCategoryActions() {
+        category = new GenericToOneAssociation<Category, Integer>(categoryController, Shows_.category) {
+            @Override
+            protected Category get() {
+                return getShows().getCategory();
+            }
+
+            @Override
+            protected void set(Category category) {
+                getShows().setCategory(category);
+            }
+        };
+    }
+
+    public GenericToOneAssociation<Category, Integer> getCategory() {
+        return category;
     }
 
     @PostConstruct

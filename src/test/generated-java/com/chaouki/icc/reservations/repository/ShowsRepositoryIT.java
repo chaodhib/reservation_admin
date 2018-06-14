@@ -15,6 +15,7 @@ import static org.junit.Assert.fail;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.util.List;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -112,4 +113,33 @@ public class ShowsRepositoryIT {
         assertThat(shows).isEqualTo(showsRepository.findUnique(ser));
     }
 
+    @Test
+    @Rollback
+    public void saveAndGetWithExplicitNullPropertySelector() {
+        Shows shows = showsGenerator.getShows();
+
+        // add it to a Set before saving (force equals/hashcode)
+        Set<Shows> set = newHashSet(shows, shows);
+        assertThat(set).hasSize(1);
+
+        // explicitly set toOne relationship to null
+        shows.setCategory(null);
+
+        showsRepository.save(shows);
+        entityManager.flush();
+
+        // clear cache to force reload from db
+        entityManager.clear();
+
+        SearchParameters searchParameters = new SearchParameters() //
+                .caseInsensitive() //
+                .anywhere() //
+                .property(Shows_.category, (Object) null);
+
+        List<Shows> elements = showsRepository.find(searchParameters);
+        assertThat(elements).isNotEmpty();
+        for (Shows element : elements) {
+            assertThat(element.getCategory()).isNull();
+        }
+    }
 }

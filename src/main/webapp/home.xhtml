@@ -60,6 +60,16 @@
 					</h:commandLink>
 				</li>
 				<li>
+					<h:outputText value="#{msg.category} " />
+					<h:commandLink id="selectCategories" action="#{categoryController.beginSearch()}" rendered="#{categoryPermission.canSearch()}" ajax="false" immediate="true">
+						<h:outputText value="#{msg.home_conversation_search}"/>
+					</h:commandLink>
+					<h:outputText value=" " />
+					<h:commandLink id="newCategories" action="#{categoryController.beginCreate()}" rendered="#{categoryPermission.canCreate()}" ajax="false" immediate="true">
+						<h:outputText value="#{msg.home_conversation_create}"/>
+					</h:commandLink>
+				</li>
+				<li>
 					<h:outputText value="#{msg.locality} " />
 					<h:commandLink id="selectLocalities" action="#{localityController.beginSearch()}" rendered="#{localityPermission.canSearch()}" ajax="false" immediate="true">
 						<h:outputText value="#{msg.home_conversation_search}"/>

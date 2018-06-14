@@ -23,5 +23,6 @@ public abstract class Shows_ {
     public static volatile SingularAttribute<Shows, Double> price;
 
     // Many to one
+    public static volatile SingularAttribute<Shows, Category> category;
     public static volatile SingularAttribute<Shows, Locations> location;
 }

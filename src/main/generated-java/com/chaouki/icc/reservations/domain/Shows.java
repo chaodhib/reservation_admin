@@ -52,6 +52,7 @@ public class Shows implements Identifiable<Integer>, Serializable {
     private Double price;
 
     // Many to one
+    private Category category;
     private Locations location;
     // -- [id] ------------------------
 
@@ -171,6 +172,28 @@ public class Shows implements Identifiable<Integer>, Serializable {
     // -----------------------------------------------------------------
     // Many to One support
     // -----------------------------------------------------------------
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // many-to-one: Shows.category ==> Category.id
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    @JoinColumn(name = "category_id")
+    @ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
+    public Category getCategory() {
+        return category;
+    }
+
+    /**
+     * Set the {@link #category} without adding this Shows instance on the passed {@link #category}
+     */
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Shows category(Category category) {
+        setCategory(category);
+        return this;
+    }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // many-to-one: Shows.location ==> Locations.id

@@ -41,6 +41,7 @@ public class MessageSourceConfiguration {
                 // generated domain resources
                 "classpath:/localization/domain/Artists", //
                 "classpath:/localization/domain/CastMember", //
+                "classpath:/localization/domain/Category", //
                 "classpath:/localization/domain/Locality", //
                 "classpath:/localization/domain/Locations", //
                 "classpath:/localization/domain/RepresentationUser", //

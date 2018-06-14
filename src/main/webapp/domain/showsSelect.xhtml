@@ -25,6 +25,8 @@
 				controller="#{locationsController}" permission="#{locationsPermission}"/>
 			<app:selectManyBoolean id="bookable" value="#{showsSearchForm.bookableSelector}" label="shows_bookable" />
 			<app:rangeDouble id="price" value="#{showsSearchForm.priceRange}" label="shows_price" />
+			<app:multiAutoComplete id="categorySelector" value="#{showsSearchForm.categorySelector}" label="shows_category" 
+				controller="#{categoryController}" permission="#{categoryPermission}"/>
 		</ui:define>
 		<ui:define name="result">
 			<c:if test="#{not multiCheckboxSelection}">

@@ -25,8 +25,10 @@
 	<entry key="shows_locationId">Location Id</entry>
 	<entry key="shows_bookable">Bookable</entry>
 	<entry key="shows_price">Price</entry>
+	<entry key="shows_categoryId">Category Id</entry>
 
 	<!-- x-to-one -->
+	<entry key="shows_category">Category</entry>
 	<entry key="shows_location">Location</entry>
 
 	<!-- uniques -->

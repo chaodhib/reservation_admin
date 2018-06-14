@@ -15,14 +15,9 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:app="http://jaxio.com/app"
 	xmlns:appcc="http://xmlns.jcp.org/jsf/composite/components">
-<app:edit bean="#{localityEditForm}" title="#{localityEditForm.title}">
+<app:edit bean="#{categoryEditForm}" title="#{categoryEditForm.title}">
 	<ui:define name="form">
-		<app:input id="postalCode" value="#{localityEditForm.locality.postalCode}" size="7" label="locality_postalCode" required="true">
-			<f:validateBean binding="#{jpaUniqueValidator}" entity="#{localityEditForm.locality}" property="postalCode" />
-		</app:input>
-		<app:input id="locality2" value="#{localityEditForm.locality.locality2}" size="60" label="locality_locality2" required="true">
-			<f:validateBean binding="#{jpaUniqueValidator}" entity="#{localityEditForm.locality}" property="locality2" />
-		</app:input>
+		<app:input id="name" value="#{categoryEditForm.category.name}" size="10" label="category_name" required="true" />
 	</ui:define>
 </app:edit>
 </ui:composition>

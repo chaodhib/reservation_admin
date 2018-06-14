@@ -11,8 +11,7 @@ package com.chaouki.icc.reservations.repository;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import com.chaouki.icc.reservations.domain.Locality;
-import com.chaouki.icc.reservations.util.ValueGenerator;
+import com.chaouki.icc.reservations.domain.Category;
 
 /**
  * Helper class to create transient entities instance for testing purposes.
@@ -20,18 +19,17 @@ import com.chaouki.icc.reservations.util.ValueGenerator;
  */
 @Named
 @Singleton
-public class LocalityGenerator {
+public class CategoryGenerator {
 
     /**
-     * Returns a new Locality instance filled with random values.
+     * Returns a new Category instance filled with random values.
      */
-    public Locality getLocality() {
-        Locality locality = new Locality();
+    public Category getCategory() {
+        Category category = new Category();
 
         // simple attributes follows
-        locality.setPostalCode(ValueGenerator.getUniqueString(7));
-        locality.setLocality2(ValueGenerator.getUniqueString(60));
-        return locality;
+        category.setName("a");
+        return category;
     }
 
 }

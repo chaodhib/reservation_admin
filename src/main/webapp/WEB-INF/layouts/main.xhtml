@@ -70,6 +70,7 @@
 								<p:menuButton value="Domain">
 									<p:menuitem value="#{msg.artists}" action="#{artistsController.beginSearch()}" rendered="#{artistsPermission.canSearch()}" />
 									<p:menuitem value="#{msg.castMember}" action="#{castMemberController.beginSearch()}" rendered="#{castMemberPermission.canSearch()}" />
+									<p:menuitem value="#{msg.category}" action="#{categoryController.beginSearch()}" rendered="#{categoryPermission.canSearch()}" />
 									<p:menuitem value="#{msg.locality}" action="#{localityController.beginSearch()}" rendered="#{localityPermission.canSearch()}" />
 									<p:menuitem value="#{msg.locations}" action="#{locationsController.beginSearch()}" rendered="#{locationsPermission.canSearch()}" />
 									<p:menuitem value="#{msg.representationUser}" action="#{representationUserController.beginSearch()}" rendered="#{representationUserPermission.canSearch()}" />

@@ -36,6 +36,7 @@ public class ShowsGraphLoader extends EntityGraphLoader<Shows, Integer> {
 
     @Override
     public void loadGraph(Shows shows) {
+        loadSingular(shows.getCategory());
         loadSingular(shows.getLocation());
     }
 }
