@@ -69,7 +69,7 @@ public class Locality implements Identifiable<Integer>, Serializable {
 
     @NotEmpty
     @Size(max = 7)
-    @Column(name = "postal_code", nullable = false, unique = true, length = 6)
+    @Column(name = "postal_code", nullable = false, unique = true, length = 7)
     public String getPostalCode() {
         return postalCode;
     }

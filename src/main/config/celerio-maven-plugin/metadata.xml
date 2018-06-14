@@ -79,9 +79,9 @@
             <metaAttribute name="type" value="int(11)"/>
           </metaAttributes>
         </column>
-        <column name="postal_code" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="6" type="VARCHAR">
+        <column name="postal_code" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="2" size="7" type="VARCHAR">
           <metaAttributes>
-            <metaAttribute name="type" value="varchar(6)"/>
+            <metaAttribute name="type" value="varchar(7)"/>
           </metaAttributes>
         </column>
         <column name="locality" decimalDigits="0" autoIncrement="false" nullable="false" ordinalPosition="3" size="60" type="VARCHAR">
